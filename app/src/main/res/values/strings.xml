@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">PlantManager</string>
-    <!-- TODO: Remove or change this placeholder text -->
 
     <string name="login">Login</string>
     <string name="username">Username</string>
@@ -8,6 +7,6 @@
     <string name="click_to_register"><u>Click here to register</u></string>
 
     <string name="register">Register</string>
-    <string name="re_type_password">Re-type Password</string>
-    <string name="your_name">Full Name</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>

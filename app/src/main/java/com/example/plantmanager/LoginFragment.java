@@ -18,7 +18,7 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         FragmentLoginBinding binding = FragmentLoginBinding.inflate(inflater, container,false);
 
-        binding.tvRegister.setOnClickListener(view -> NavHostFragment.findNavController(LoginFragment.this)
+        binding.tvLoginRegister.setOnClickListener(view -> NavHostFragment.findNavController(LoginFragment.this)
                 .navigate(R.id.navigate_from_loginFragment_to_registerFragment));
 
         return binding.getRoot();

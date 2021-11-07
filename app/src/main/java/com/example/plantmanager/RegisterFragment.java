@@ -18,7 +18,7 @@ public class RegisterFragment extends Fragment {
                              Bundle savedInstanceState) {
         FragmentRegisterBinding binding = FragmentRegisterBinding.inflate(inflater, container,false);
 
-        binding.textView2.setOnClickListener(view -> NavHostFragment.findNavController(RegisterFragment.this)
+        binding.btnRegister.setOnClickListener(view -> NavHostFragment.findNavController(RegisterFragment.this)
                 .navigate(R.id.navigate_from_registerFragment_to_loginFragment));
 
         return binding.getRoot();

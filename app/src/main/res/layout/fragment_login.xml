@@ -9,7 +9,7 @@
     tools:context=".LoginFragment">
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_register_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="105dp"
@@ -17,7 +17,7 @@
         android:textSize="@dimen/title_size" />
 
     <EditText
-        android:id="@+id/et_username"
+        android:id="@+id/et_login_username"
         android:layout_width="match_parent"
         android:layout_height="@dimen/elements_height"
         android:layout_marginLeft="@dimen/margin_left_right"
@@ -25,11 +25,11 @@
         android:background="@drawable/edit_text_custom"
         android:hint="@string/username"
         android:inputType="textEmailAddress"
-        android:padding="@dimen/edit_text_padding"
+        android:padding="@dimen/padding"
         android:textSize="@dimen/text_size" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_login_password"
         android:layout_width="match_parent"
         android:layout_height="@dimen/elements_height"
         android:layout_marginLeft="@dimen/margin_left_right"
@@ -38,14 +38,14 @@
         android:background="@drawable/edit_text_custom"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:padding="@dimen/edit_text_padding"
+        android:padding="@dimen/padding"
         android:textSize="@dimen/text_size" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="@dimen/elements_height"
-        android:layout_below="@id/et_password"
+        android:layout_below="@id/et_login_password"
         android:layout_marginLeft="@dimen/margin_left_right"
         android:layout_marginTop="76dp"
         android:layout_marginRight="@dimen/margin_left_right"
@@ -54,7 +54,7 @@
         android:textColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/tv_register"
+        android:id="@+id/tv_login_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
