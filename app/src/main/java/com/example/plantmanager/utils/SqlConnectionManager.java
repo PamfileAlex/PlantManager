@@ -45,11 +45,10 @@ public class SqlConnectionManager {
 //        return conn;
 
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                .permitAll().build();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        String ip = "86.124.115.249";
+        String ip = "172.31.144.1";
         String port = "1433";
         String Classes = "net.sourceforge.jtds.jdbc.Driver";
         String database = "PlantManager";
@@ -65,6 +64,13 @@ public class SqlConnectionManager {
         try {
             Class.forName(Classes);
             Connection connection = DriverManager.getConnection(url);
+            Statement stmt = connection.createStatement();
+            String SQL = "select * from [User]";
+            ResultSet rs = stmt.executeQuery(SQL);
+
+            while (rs.next()) {
+                System.out.println(rs.getString("first_name"));
+            }
             System.out.println("Success");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
