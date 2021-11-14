@@ -18,9 +18,8 @@ import java.sql.Statement;
 
 public class LoginFragment extends Fragment {
     FragmentLoginBinding binding;
-
-    Connection connection;
-    String connectionResult = "";
+    SqlConnectionManager sqlConnectionManager;
+    Connection databaseConnection;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,34 +31,29 @@ public class LoginFragment extends Fragment {
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                test();
+                connectToDataBase();
             }
         });
 
         return binding.getRoot();
     }
 
-    public void test(){
-        try{
-            SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
-            sqlConnectionManager.getSqlConnectionManager();
-//            connection = sqlConnectionManager.getSqlConnectionManager();
-//            if(connection!=null) {
-//                String q = "Select * from User";
-//                Statement st = connection.createStatement();
-//                ResultSet res = st.executeQuery(q);
-//
-//                while (res.next()){
-//                    System.out.println(res.getString(1));
-//                }
-//            }
-//            else
-//            {
-//                connectionResult="Check conn";
-//            }
-//            System.out.println();
-        }
-        catch(Exception e){
+    public void connectToDataBase() {
+        sqlConnectionManager = new SqlConnectionManager();
+
+        String classes = this.getString(R.string.db_classes);
+        String url = this.getString(R.string.db_connection_url);
+
+        try {
+            databaseConnection = sqlConnectionManager.getSqlConnection(classes, url);
+            Statement stmt = databaseConnection.createStatement();
+            String SQL = "select * from [User]";
+            ResultSet rs = stmt.executeQuery(SQL);
+
+            while (rs.next()) {
+                System.out.println(rs.getString("first_name"));
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

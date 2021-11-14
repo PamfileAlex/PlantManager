@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">PlantManager</string>
 
+    <string name="db_classes">net.sourceforge.jtds.jdbc.Driver</string>
+    <string name="db_connection_url">jdbc:jtds:sqlserver://172.31.144.1:1433;databaseName=PlantManager;user=sa;password="1234;instance=SQLEXPRESS;</string>
+
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
