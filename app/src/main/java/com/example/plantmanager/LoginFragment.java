@@ -46,13 +46,7 @@ public class LoginFragment extends Fragment {
 
         try {
             databaseConnection = sqlConnectionManager.getSqlConnection(classes, url);
-            Statement stmt = databaseConnection.createStatement();
-            String SQL = "select * from [User]";
-            ResultSet rs = stmt.executeQuery(SQL);
-
-            while (rs.next()) {
-                System.out.println(rs.getString("first_name"));
-            }
+            sqlConnectionManager.printUsers(databaseConnection);
         } catch (Exception e) {
             e.printStackTrace();
         }
