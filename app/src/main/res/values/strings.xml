@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">PlantManager</string>
 
+    <string name="db_classes">net.sourceforge.jtds.jdbc.Driver</string>
+    <string name="db_connection_url">jdbc:jtds:sqlserver://172.31.144.1:1433;databaseName=PlantManager;user=sa;password="1234;instance=SQLEXPRESS;</string>
+
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="click_to_register"><u>Click here to register</u></string>
 
     <string name="register">Register</string>
-    <string name="full_name">Full Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="email">Email</string>
     <string name="confirm_password">Confirm Password</string>
 </resources>
