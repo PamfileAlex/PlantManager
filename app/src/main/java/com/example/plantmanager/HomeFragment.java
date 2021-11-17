@@ -12,8 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.plantmanager.databinding.FragmentHomeBinding;
+
 public class HomeFragment extends Fragment {
 
+    private FragmentHomeBinding binding;
     private HomeViewModel mViewModel;
 
     public static HomeFragment newInstance() {
@@ -23,6 +26,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
