@@ -12,6 +12,9 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         this.plants = new ArrayList<>();
+        this.plants.add(new Plant(1, "Plant1"));
+        this.plants.add(new Plant(2, "Plant2"));
+        this.plants.add(new Plant(3, "Plant3"));
     }
 
     public ArrayList<Plant> getPlants() {

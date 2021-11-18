@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.plantmanager.databinding.FragmentHomeBinding;
+import com.example.plantmanager.utils.PlantsRecyclerAdapter;
 
 public class HomeFragment extends Fragment {
 
@@ -27,7 +28,9 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        binding.list.setAdapter(new PlantsRecyclerAdapter(mViewModel.getPlants()));
+        //return inflater.inflate(R.layout.fragment_home, container, false);
+        return binding.getRoot();
     }
 
     @Override
