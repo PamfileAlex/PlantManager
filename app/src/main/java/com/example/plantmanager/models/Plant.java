@@ -2,26 +2,26 @@ package com.example.plantmanager.models;
 
 public class Plant {
     private final int ID;
-    private String name;
+    private String title;
 
     public Plant() {
         ID = -1;
     }
 
-    public Plant(int ID, String name) {
+    public Plant(int ID, String title) {
         this.ID = ID;
-        this.name = name;
+        this.title = title;
     }
 
     public int getID() {
         return ID;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
