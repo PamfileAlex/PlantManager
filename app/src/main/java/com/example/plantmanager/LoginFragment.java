@@ -31,11 +31,15 @@ public class LoginFragment extends Fragment {
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                connectToDataBase();
+                toHome();
             }
         });
 
         return binding.getRoot();
+    }
+
+    public void toHome() {
+        NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.navigate_from_loginFragment_to_homeFragment);
     }
 
     public void connectToDataBase() {
