@@ -49,7 +49,7 @@ public class RegisterFragment extends Fragment {
             return;
         }
 
-        if (!checkUsername(binding.etRegisterUsername.getText().toString())) {
+        if (existsUsername(binding.etRegisterUsername.getText().toString())) {
             snackbar = Snackbar.make(view, R.string.username_already_exists, 4000);
             snackbar.show();
             return;
@@ -73,7 +73,7 @@ public class RegisterFragment extends Fragment {
         return password.equals(confirmPassword);
     }
 
-    private boolean checkUsername(String username) {
+    private boolean existsUsername(String username) {
         SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
         UserManager userManger = new UserManager();
 
@@ -85,14 +85,14 @@ public class RegisterFragment extends Fragment {
 
             for (User user : users) {
                 if (user.getUsername().equals(username))
-                    return false;
+                    return true;
             }
             databaseConnection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return true;
+        return false;
     }
 
     private void addUser(User user) {

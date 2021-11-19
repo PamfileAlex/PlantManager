@@ -8,6 +8,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="click_to_register"><u>Click here to register</u></string>
+    <string name="wrong_credentials">Invalid username or password!</string>
 
     <string name="register">Register</string>
     <string name="last_name">Last Name</string>
