@@ -29,26 +29,27 @@ public class LoginFragment extends Fragment {
         binding.tvLoginRegister.setOnClickListener(view -> NavHostFragment.findNavController(LoginFragment.this)
                 .navigate(R.id.navigate_from_loginFragment_to_registerFragment));
 
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                connectToDataBase();
-            }
-        });
+//        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                connectToDataBase();
+//            }
+//        });
 
         return binding.getRoot();
     }
 
-    public void connectToDataBase() {
-        sqlConnectionManager = new SqlConnectionManager();
-
-        String classes = this.getString(R.string.db_classes);
-        String url = this.getString(R.string.db_connection_url);
-
-        try {
-            databaseConnection = sqlConnectionManager.getSqlConnection(classes, url);
-            sqlConnectionManager.printUsers(databaseConnection);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void connectToDataBase() {
+//        sqlConnectionManager = new SqlConnectionManager();
+//
+//        String classes = this.getString(R.string.db_classes);
+//        String url = this.getString(R.string.db_connection_url);
+//
+//        try {
+//            databaseConnection = sqlConnectionManager.getSqlConnection(classes, url);
+//            sqlConnectionManager.printUsers(databaseConnection);
+//            databaseConnection.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
