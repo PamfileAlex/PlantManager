@@ -6,13 +6,16 @@ import android.os.StrictMode;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plantmanager.R;
+import com.example.plantmanager.models.User;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 
 public class SqlConnectionManager extends AppCompatActivity {
@@ -36,16 +39,5 @@ public class SqlConnectionManager extends AppCompatActivity {
         }
 
         return connection;
-    }
-
-    public void printUsers(Connection connection) throws Exception {
-        PreparedStatement statement = connection.prepareStatement("EXEC selectAllUsers");
-        ArrayList list = new ArrayList();
-        ResultSet rs = statement.executeQuery();
-        while (rs.next()) {
-            list.add(rs.getString("first_name"));
-            System.out.println(rs.getString("first_name"));
-        }
-
     }
 }
