@@ -15,9 +15,9 @@ import java.util.List;
 
 public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAdapter.ViewHolder> {
     private final List<Plant> plants;
-    private final OnItemListener onItemListener;
+    private final OnItemListener<Plant> onItemListener;
 
-    public PlantsRecyclerAdapter(List<Plant> plants, OnItemListener onItemListener) {
+    public PlantsRecyclerAdapter(List<Plant> plants, OnItemListener<Plant> onItemListener) {
         this.plants = plants;
         this.onItemListener = onItemListener;
     }
@@ -45,20 +45,18 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public Plant item;
         public final TextView title;
-        public final View view;
-        public final OnItemListener onItemListener;
+        public final OnItemListener<Plant> onItemListener;
 
-        public ViewHolder(PlantListItemBinding binding, OnItemListener onItemListener) {
+        public ViewHolder(PlantListItemBinding binding, OnItemListener<Plant> onItemListener) {
             super(binding.getRoot());
             this.title = binding.plantTitle;
             this.onItemListener = onItemListener;
-            this.view = binding.getRoot();
-            this.view.setOnClickListener(this);
+            binding.getRoot().setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            onItemListener.onItemClick(getAdapterPosition());
+            onItemListener.onItemClick(item, getAdapterPosition());
         }
 
         @NonNull
@@ -66,9 +64,5 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
         public String toString() {
             return "";
         }
-    }
-
-    public interface OnItemListener {
-        void onItemClick(int position);
     }
 }

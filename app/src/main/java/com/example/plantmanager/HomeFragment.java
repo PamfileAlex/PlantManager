@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.plantmanager.databinding.FragmentHomeBinding;
+import com.example.plantmanager.models.Plant;
+import com.example.plantmanager.utils.OnItemListener;
 import com.example.plantmanager.utils.PlantsRecyclerAdapter;
 
 public class HomeFragment extends Fragment {
@@ -21,9 +23,9 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private HomeViewModel mViewModel;
 
-    private final PlantsRecyclerAdapter.OnItemListener onItemListener = new PlantsRecyclerAdapter.OnItemListener() {
+    private final OnItemListener<Plant> onItemListener = new OnItemListener<Plant>() {
         @Override
-        public void onItemClick(int position) {
+        public void onItemClick(Plant item, int position) {
             Toast.makeText(getParentFragment().getContext(), "clicked " + position, Toast.LENGTH_SHORT).show();
         }
     };
@@ -36,7 +38,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        binding.list.setAdapter(new PlantsRecyclerAdapter(mViewModel.getPlants(), onItemListener));
+        binding.plantList.setAdapter(new PlantsRecyclerAdapter(mViewModel.getPlants(), onItemListener));
         return binding.getRoot();
     }
 
