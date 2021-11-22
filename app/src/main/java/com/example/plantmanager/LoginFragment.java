@@ -53,9 +53,10 @@ public class LoginFragment extends Fragment {
         }
 
         System.out.println("Connect succeeded!");
+        NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.navigate_from_loginFragment_to_homeFragment);
     }
 
-    private boolean areUsernameAndPasswordValid(String username, String password){
+    private boolean areUsernameAndPasswordValid(String username, String password) {
         SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
         UserManager userManger = new UserManager();
 
