@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.plantmanager.database.UserManager;
 import com.example.plantmanager.databinding.FragmentLoginBinding;
@@ -43,12 +44,9 @@ public class LoginFragment extends Fragment {
     }
 
     private void manageLogin(View view) {
-        Snackbar snackbar;
-
         if (!areUsernameAndPasswordValid(binding.etLoginUsername.getText().toString(),
                 binding.etLoginPassword.getText().toString())) {
-            snackbar = Snackbar.make(view, R.string.wrong_credentials, 4000);
-            snackbar.show();
+            Toast.makeText(getContext(), R.string.wrong_credentials, Toast.LENGTH_SHORT).show();
             return;
         }
 

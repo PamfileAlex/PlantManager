@@ -17,5 +17,6 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="not_same_password">Please provide the same password in both fields!</string>
     <string name="username_already_exists">This username already exists!</string>
+    <string name="empty_field">Please complete all fields!</string>
     <string name="register_succeeded">Your account has been created!</string>
 </resources>

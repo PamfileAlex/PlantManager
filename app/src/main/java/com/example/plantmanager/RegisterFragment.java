@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.plantmanager.database.UserManager;
 import com.example.plantmanager.databinding.FragmentRegisterBinding;
@@ -40,30 +41,33 @@ public class RegisterFragment extends Fragment {
     }
 
     private void manageRegister(View view) {
-        Snackbar snackbar;
+        String lastName = binding.etRegisterLastName.getText().toString();
+        String firstName = binding.etRegisterFirstName.getText().toString();
+        String email = binding.etRegisterEmail.getText().toString();
+        String username = binding.etRegisterUsername.getText().toString();
+        String password = binding.etRegisterPassword.getText().toString();
+        String confirmPassword = binding.etRegisterConfirmPassword.getText().toString();
 
-        if (!checkPassword(binding.etRegisterPassword.getText().toString(),
-                binding.etRegisterConfirmPassword.getText().toString())) {
-            snackbar = Snackbar.make(view, R.string.not_same_password, 4000);
-            snackbar.show();
+        if (!checkPassword(password, confirmPassword)) {
+            Toast.makeText(getContext(), R.string.not_same_password, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (existsUsername(binding.etRegisterUsername.getText().toString())) {
-            snackbar = Snackbar.make(view, R.string.username_already_exists, 4000);
-            snackbar.show();
+        if (existsUsername(username)) {
+            Toast.makeText(getContext(), R.string.username_already_exists, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        User user = new User(binding.etRegisterLastName.getText().toString(),
-                binding.etRegisterFirstName.getText().toString(),
-                binding.etRegisterEmail.getText().toString(),
-                binding.etRegisterUsername.getText().toString(),
-                binding.etRegisterPassword.getText().toString());
+        if(lastName.equals("") || firstName.equals("") || email.equals("") ||
+        username.equals("") || password.equals("") || confirmPassword.equals("")){
+            Toast.makeText(getContext(), R.string.empty_field, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        User user = new User(lastName, firstName, email, username, password);
         addUser(user);
 
-        snackbar = Snackbar.make(view, R.string.register_succeeded, 4000);
-        snackbar.show();
+        Toast.makeText(getContext(), R.string.register_succeeded, Toast.LENGTH_SHORT).show();
 
         NavHostFragment.findNavController(RegisterFragment.this)
                 .navigate(R.id.navigate_from_registerFragment_to_loginFragment);
