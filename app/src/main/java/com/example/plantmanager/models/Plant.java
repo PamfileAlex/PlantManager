@@ -1,27 +1,63 @@
 package com.example.plantmanager.models;
 
+import java.util.Date;
+
 public class Plant {
-    private final int ID;
-    private String title;
+//    private final int ID;
+//    private String title;
+//
+//    public Plant() {
+//        ID = -1;
+//    }
+//
+//    public Plant(int ID, String title) {
+//        this.ID = ID;
+//        this.title = title;
+//    }
+//
+//    public int getID() {
+//        return ID;
+//    }
+//
+//    public String getTitle() {
+//        return title;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
 
-    public Plant() {
-        ID = -1;
+    private String name;
+    private String imagePath;
+    private Date lastWatered;
+
+    public Plant(String name, String imagePath, Date lastWatered) {
+        this.name = name;
+        this.imagePath = imagePath;
+        this.lastWatered = lastWatered;
     }
 
-    public Plant(int ID, String title) {
-        this.ID = ID;
-        this.title = title;
+    public String getName() {
+        return name;
     }
 
-    public int getID() {
-        return ID;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTitle() {
-        return title;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public Date getLastWatered() {
+        return lastWatered;
+    }
+
+    public void setLastWatered(Date lastWatered) {
+        this.lastWatered = lastWatered;
     }
 }
