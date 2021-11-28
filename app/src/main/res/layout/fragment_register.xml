@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margit_top_bottom"
-            android:layout_marginBottom="@dimen/margit_top_bottom"
+            android:layout_marginBottom="@dimen/margin"
             android:text="@string/register"
             android:textSize="@dimen/register_title_size" />
 
@@ -87,8 +87,6 @@
                 android:gravity="center"
                 android:text="@string/email"
                 android:textSize="@dimen/text_size" />
-
-            .toString()
 
             <EditText
                 android:id="@+id/et_register_email"
