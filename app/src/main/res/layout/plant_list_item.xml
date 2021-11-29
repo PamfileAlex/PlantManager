@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:orientation="horizontal"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:background="@drawable/plant_list_item_background">
 
     <ImageView
         android:layout_width="120dp"
