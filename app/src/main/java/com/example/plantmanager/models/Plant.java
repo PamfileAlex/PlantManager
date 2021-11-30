@@ -7,15 +7,25 @@ public class Plant {
     private String name;
     private String imagePath;
     private Date lastWatered;
+    private int idCategory;
 
-    public Plant(String name, String imagePath, Date lastWatered) {
+    public Plant(String name, String imagePath, Date lastWatered, int idCategory) {
         this.name = name;
         this.imagePath = imagePath;
         this.lastWatered = lastWatered;
+        this.idCategory = idCategory;
     }
 
-    public Plant(int id, String name, String imagePath, Date lastWatered) {
-        this(name, imagePath, lastWatered);
+    public Plant(int id, String name, String imagePath, Date lastWatered, int idCategory) {
+        this(name, imagePath, lastWatered, idCategory);
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,5 +51,13 @@ public class Plant {
 
     public void setLastWatered(Date lastWatered) {
         this.lastWatered = lastWatered;
+    }
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 }

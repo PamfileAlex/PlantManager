@@ -1,53 +1,16 @@
 package com.example.plantmanager.database;
 
 import com.example.plantmanager.models.Plant;
-import com.example.plantmanager.models.User;
 import com.example.plantmanager.utils.SqlConnectionManager;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PlantDataAccess {
-    private static ArrayList<Plant> getPlants(Connection connection) throws SQLException {
-        ArrayList<Plant> plants = new ArrayList<>();
-
-        CallableStatement statement = connection.prepareCall("{call spSelectPlants}");
-        statement.execute();
-
-        ResultSet resultSet = statement.getResultSet();
-
-        while (resultSet.next()) {
-            Plant plant = new Plant(resultSet.getInt("id_plant"),
-                    resultSet.getString("name"),
-                    resultSet.getString("image_url"),
-                    resultSet.getDate("last_watered"));
-            plants.add(plant);
-        }
-
-        return plants;
-    }
-
-    public static ArrayList<Plant> getPlants() {
-        SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
-        PlantDataAccess plantManager = new PlantDataAccess();
-        try {
-            Connection databaseConnection = sqlConnectionManager.getSqlConnection(
-                    DataAccessHelper.dbClasses,
-                    DataAccessHelper.dbConnectionUrl);
-
-            ArrayList<Plant> plants = plantManager.getPlants(databaseConnection);
-            databaseConnection.close();
-
-            return plants;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public static ArrayList<Plant> getPlants(int idUser) {
         SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
         ArrayList<Plant> plants = new ArrayList<>();
@@ -68,7 +31,8 @@ public class PlantDataAccess {
                 Plant plant = new Plant(resultSet.getInt("id_plant"),
                         resultSet.getString("name"),
                         resultSet.getString("image_url"),
-                        resultSet.getDate("last_watered"));
+                        resultSet.getDate("last_watered"),
+                        resultSet.getInt("id_category"));
                 plants.add(plant);
             }
             databaseConnection.close();
@@ -77,5 +41,17 @@ public class PlantDataAccess {
         }
 
         return plants;
+    }
+
+    private static void insertPlant(Connection connection, Plant plant, int idUser) throws SQLException {
+        CallableStatement statement = connection.prepareCall("{call spInsertPlant(?, ?, ?, ?, ?)}");
+
+        statement.setString(1, plant.getName());
+        statement.setDate(2, (Date) plant.getLastWatered());
+        statement.setString(3, plant.getImagePath());
+        statement.setInt(4, plant.getIdCategory());
+        statement.setInt(5, idUser);
+
+        statement.execute();
     }
 }
