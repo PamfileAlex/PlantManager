@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.plantmanager.databinding.FragmentHomeBinding;
@@ -39,6 +41,10 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         binding.plantList.setAdapter(new PlantsRecyclerAdapter(mViewModel.getPlants(), onItemListener));
+
+        Spinner spinner = binding.customSpinner;
+        initSpinner(spinner);
+
         return binding.getRoot();
     }
 
@@ -47,5 +53,12 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         // TODO: Use the ViewModel
+    }
+
+    private void initSpinner(Spinner spinner) {
+        String[] years = {"1996", "1997", "1998", "1998"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_item, years);
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
+        spinner.setAdapter(adapter);
     }
 }
