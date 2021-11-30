@@ -10,11 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.plantmanager.database.UserManager;
+import com.example.plantmanager.database.UserDataAccess;
 import com.example.plantmanager.databinding.FragmentRegisterBinding;
 import com.example.plantmanager.models.User;
 import com.example.plantmanager.utils.SqlConnectionManager;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -53,7 +52,7 @@ public class RegisterFragment extends Fragment {
             return;
         }
 
-        if (existsUsername(username)) {
+        if (UserDataAccess.getUser(username) != null) {
             Toast.makeText(getContext(), R.string.username_already_exists, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -65,7 +64,7 @@ public class RegisterFragment extends Fragment {
         }
 
         User user = new User(lastName, firstName, email, username, password);
-        addUser(user);
+        UserDataAccess.insertUser(user);
 
         Toast.makeText(getContext(), R.string.register_succeeded, Toast.LENGTH_SHORT).show();
 
@@ -75,42 +74,5 @@ public class RegisterFragment extends Fragment {
 
     private boolean checkPassword(String password, String confirmPassword) {
         return password.equals(confirmPassword);
-    }
-
-    private boolean existsUsername(String username) {
-        SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
-        UserManager userManger = new UserManager();
-
-        try {
-            Connection databaseConnection = sqlConnectionManager.getSqlConnection(
-                    this.getString(R.string.db_classes),
-                    this.getString(R.string.db_connection_url));
-            ArrayList<User> users = userManger.getUsers(databaseConnection);
-
-            for (User user : users) {
-                if (user.getUsername().equals(username))
-                    return true;
-            }
-            databaseConnection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
-    private void addUser(User user) {
-        SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
-        UserManager userManger = new UserManager();
-
-        try {
-            Connection databaseConnection = sqlConnectionManager.getSqlConnection(
-                    this.getString(R.string.db_classes),
-                    this.getString(R.string.db_connection_url));
-            userManger.insertUser(databaseConnection, user);
-            databaseConnection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
