@@ -3,6 +3,7 @@
     <dimen name="margin_left_right">20dp</dimen>
     <dimen name="margit_top_bottom">10dp</dimen>
     <dimen name="title_size">50sp</dimen>
+    <dimen name="register_title_size">30sp</dimen>
     <dimen name="elements_height">50sp</dimen>
     <dimen name="padding">15dp</dimen>
     <dimen name="text_size">15sp</dimen>

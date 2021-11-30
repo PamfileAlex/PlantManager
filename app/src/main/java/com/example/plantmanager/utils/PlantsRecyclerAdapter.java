@@ -32,7 +32,7 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.item = plants.get(position);
-        holder.title.setText(holder.item.getTitle());
+        holder.title.setText(holder.item.getName());
         //holder.view.setOnClickListener(v -> Toast.makeText(holder.view.getContext(), "clicked",Toast.LENGTH_LONG));
     }
 
