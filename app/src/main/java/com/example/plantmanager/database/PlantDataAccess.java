@@ -1,6 +1,7 @@
 package com.example.plantmanager.database;
 
 import com.example.plantmanager.models.Plant;
+import com.example.plantmanager.models.User;
 import com.example.plantmanager.utils.SqlConnectionManager;
 
 import java.sql.CallableStatement;
@@ -19,7 +20,8 @@ public class PlantDataAccess {
         ResultSet resultSet = statement.getResultSet();
 
         while (resultSet.next()) {
-            Plant plant = new Plant(resultSet.getString("name"),
+            Plant plant = new Plant(resultSet.getInt("id_plant"),
+                    resultSet.getString("name"),
                     resultSet.getString("image_url"),
                     resultSet.getDate("last_watered"));
             plants.add(plant);
@@ -44,5 +46,36 @@ public class PlantDataAccess {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static ArrayList<Plant> getPlants(int idUser) {
+        SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
+        ArrayList<Plant> plants = new ArrayList<>();
+
+        try {
+            Connection databaseConnection = sqlConnectionManager.getSqlConnection(
+                    DataAccessHelper.dbClasses,
+                    DataAccessHelper.dbConnectionUrl);
+
+            CallableStatement statement = databaseConnection.prepareCall("{call spGetPlantsByUserId(?)}");
+
+            statement.setInt(1, idUser);
+            statement.execute();
+
+            ResultSet resultSet = statement.getResultSet();
+
+            while (resultSet.next()) {
+                Plant plant = new Plant(resultSet.getInt("id_plant"),
+                        resultSet.getString("name"),
+                        resultSet.getString("image_url"),
+                        resultSet.getDate("last_watered"));
+                plants.add(plant);
+            }
+            databaseConnection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return plants;
     }
 }

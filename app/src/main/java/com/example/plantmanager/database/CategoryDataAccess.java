@@ -18,7 +18,8 @@ public class CategoryDataAccess {
         ResultSet resultSet = statement.getResultSet();
 
         while (resultSet.next()) {
-            Category category = new Category(resultSet.getString("name"));
+            Category category = new Category(resultSet.getInt("id_category"),
+                    resultSet.getString("name"));
             categories.add(category);
         }
 

@@ -20,7 +20,8 @@ public class UserDataAccess {
         ResultSet resultSet = statement.getResultSet();
 
         while (resultSet.next()) {
-            User user = new User(resultSet.getString("last_name"),
+            User user = new User(resultSet.getInt("id_user"),
+                    resultSet.getString("last_name"),
                     resultSet.getString("first_name"),
                     resultSet.getString("email"),
                     resultSet.getString("username"),
@@ -76,7 +77,8 @@ public class UserDataAccess {
             ResultSet resultSet = statement.getResultSet();
 
             if (resultSet.next()) {
-                user = new User(resultSet.getString("last_name"),
+                user = new User(resultSet.getInt("id_user"),
+                        resultSet.getString("last_name"),
                         resultSet.getString("first_name"),
                         resultSet.getString("email"),
                         resultSet.getString("username"),
@@ -108,7 +110,8 @@ public class UserDataAccess {
             ResultSet resultSet = statement.getResultSet();
 
             if (resultSet.next()) {
-                user = new User(resultSet.getString("last_name"),
+                user = new User(resultSet.getInt("id_user"),
+                        resultSet.getString("last_name"),
                         resultSet.getString("first_name"),
                         resultSet.getString("email"),
                         resultSet.getString("username"),

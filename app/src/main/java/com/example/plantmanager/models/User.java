@@ -1,6 +1,7 @@
 package com.example.plantmanager.models;
 
 public class User {
+    private int id;
     private String lastName;
     private String firstName;
     private String email;
@@ -8,12 +9,25 @@ public class User {
     private String password;
     private boolean active;
 
+    public User(int id, String lastName, String firstName, String email, String username, String password) {
+        this(lastName, firstName, email, username, password);
+        this.id = id;
+    }
+
     public User(String lastName, String firstName, String email, String username, String password) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLastName() {

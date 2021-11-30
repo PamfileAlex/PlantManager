@@ -1,4 +1,4 @@
-package com.example.plantmanager;
+package com.example.plantmanager.fragments;
 
 import android.os.Bundle;
 
@@ -10,14 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.plantmanager.R;
 import com.example.plantmanager.database.UserDataAccess;
 import com.example.plantmanager.databinding.FragmentRegisterBinding;
 import com.example.plantmanager.models.User;
-import com.example.plantmanager.utils.SqlConnectionManager;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class RegisterFragment extends Fragment {
     FragmentRegisterBinding binding;

@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".RegisterFragment">
+        tools:context=".fragments.RegisterFragment">
 
         <TextView
             android:id="@+id/tv_register_title"

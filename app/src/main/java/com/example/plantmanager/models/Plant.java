@@ -3,30 +3,7 @@ package com.example.plantmanager.models;
 import java.util.Date;
 
 public class Plant {
-//    private final int ID;
-//    private String title;
-//
-//    public Plant() {
-//        ID = -1;
-//    }
-//
-//    public Plant(int ID, String title) {
-//        this.ID = ID;
-//        this.title = title;
-//    }
-//
-//    public int getID() {
-//        return ID;
-//    }
-//
-//    public String getTitle() {
-//        return title;
-//    }
-//
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-
+    private int id;
     private String name;
     private String imagePath;
     private Date lastWatered;
@@ -35,6 +12,11 @@ public class Plant {
         this.name = name;
         this.imagePath = imagePath;
         this.lastWatered = lastWatered;
+    }
+
+    public Plant(int id, String name, String imagePath, Date lastWatered) {
+        this(name, imagePath, lastWatered);
+        this.id = id;
     }
 
     public String getName() {
