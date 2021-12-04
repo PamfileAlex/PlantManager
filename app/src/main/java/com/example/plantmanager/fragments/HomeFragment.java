@@ -48,6 +48,14 @@ public class HomeFragment extends Fragment {
         Spinner spinner = binding.customSpinner;
         initSpinner(spinner);
 
+        binding.addPlantButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getParentFragment().getContext(), "Plant Added", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
         return binding.getRoot();
     }
 
