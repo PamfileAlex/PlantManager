@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_left_right">20dp</dimen>
-    <dimen name="margit_top_bottom">10dp</dimen>
-    <dimen name="title_size">50sp</dimen>
-    <dimen name="register_title_size">30sp</dimen>
-    <dimen name="elements_height">50sp</dimen>
-    <dimen name="padding">15dp</dimen>
+    <dimen name="login_title_size">50sp</dimen>
+    <dimen name="title_size">30sp</dimen>
+
     <dimen name="text_size">15sp</dimen>
-    <dimen name="margin">50dp</dimen>
+    <dimen name="plant_list_item_text_size">18sp</dimen>
+
+    <dimen name="main_activity_margin">1dp</dimen>
+
+    <dimen name="margin_left_right">20dp</dimen>
+    <dimen name="margin_top_bottom">10dp</dimen>
+    <dimen name="margin_horizontal">10dp</dimen>
+
+    <dimen name="plant_list_item_margin_top">5dp</dimen>
+    <dimen name="plant_list_button_layout_height">40dp</dimen>
+
+    <dimen name="margin_title">105dp</dimen>
+    <dimen name="margin_button">76dp</dimen>
+    <dimen name="login_margin_top_link">80dp</dimen>
+    <dimen name="login_margin_bottom_link">20dp</dimen>
+
+    <dimen name="register_margin_bottom">50dp</dimen>
+
+    <dimen name="width">0dp</dimen>
+
+    <dimen name="elements_height">50sp</dimen>
+
+    <dimen name="padding">15dp</dimen>
+    <dimen name="dropdown_padding">10dp</dimen>
+    <dimen name="dropdown_padding_top_bottom">5dp</dimen>
+
+    <dimen name="layout_height_width">50dp</dimen>
+    <dimen name="add_plant_layout_height">150dp</dimen>
+    <dimen name="add_plant_layout_width">10dp</dimen>
+    <dimen name="plant_list_item_layout_height_width">150dp</dimen>
+
+    <dimen name="image_width">120dp</dimen>
 </resources>

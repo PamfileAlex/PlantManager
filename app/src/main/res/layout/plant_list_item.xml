@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="@dimen/plant_list_item_layout_height_width"
     android:orientation="horizontal"
-    android:layout_margin="10dp"
+    android:layout_margin="@dimen/margin_top_bottom"
     android:background="@drawable/plant_list_item_background">
 
     <ImageView
-        android:layout_width="120dp"
+        android:layout_width="@dimen/image_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:background="@drawable/plant" />
@@ -22,45 +22,45 @@
             android:id="@+id/tv_plant_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Plant Title"
-            android:textColor="#2b3e50"
-            android:textSize="18sp" />
+            android:layout_marginTop="@dimen/margin_top_bottom"
+            android:layout_marginEnd="@dimen/margin_top_bottom"
+            android:layout_marginBottom="@dimen/margin_top_bottom"
+            android:text="@string/plant_title"
+            android:textColor="@color/dark_blue"
+            android:textSize="@dimen/plant_list_item_text_size" />
 
         <TextView
             android:id="@+id/tv_last_watered"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="@dimen/plant_list_item_margin_top"
+            android:layout_marginEnd="@dimen/margin_top_bottom"
             android:lines="1"
             android:maxLines="1"
-            android:text="Last watered: "
-            android:textColor="#740C0C0C"
-            android:textSize="14sp" />
+            android:text="@string/last_watered"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/text_size" />
 
         <TextView
             android:id="@+id/tv_next_water"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="@dimen/plant_list_item_margin_top"
+            android:layout_marginEnd="@dimen/margin_top_bottom"
             android:lines="1"
             android:maxLines="1"
-            android:text="Next water: "
-            android:textColor="#740C0C0C"
-            android:textSize="14sp" />
+            android:text="@string/next_water"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/text_size" />
 
         <Button
             android:id="@+id/btn_water"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/plant_list_button_layout_height"
             android:layout_gravity="end"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
             android:background="@drawable/button_custom"
-            android:text="Water"
+            android:text="@string/water"
             android:textAllCaps="false" />
     </LinearLayout>
 </LinearLayout>

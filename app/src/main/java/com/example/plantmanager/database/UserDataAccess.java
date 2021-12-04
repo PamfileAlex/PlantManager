@@ -1,6 +1,5 @@
 package com.example.plantmanager.database;
 
-import com.example.plantmanager.R;
 import com.example.plantmanager.models.User;
 import com.example.plantmanager.utils.SqlConnectionManager;
 
