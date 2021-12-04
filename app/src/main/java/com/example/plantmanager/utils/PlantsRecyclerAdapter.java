@@ -52,7 +52,7 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
         public ViewHolder(PlantListItemBinding binding, OnItemListener<Plant> onItemListener) {
             super(binding.getRoot());
             this.title = binding.tvPlantTitle;
-            this.lastWatered = binding.lastWatered;
+            this.lastWatered = binding.tvLastWatered;
             this.onItemListener = onItemListener;
             binding.getRoot().setOnClickListener(this);
 
