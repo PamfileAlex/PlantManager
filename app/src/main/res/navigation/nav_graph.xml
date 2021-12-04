@@ -9,7 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="com.example.plantmanager.fragments.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/navigate_from_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/registerFragment"
         android:name="com.example.plantmanager.fragments.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/navigate_from_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -30,9 +30,17 @@
         android:id="@+id/homeFragment"
         android:name="com.example.plantmanager.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/navigate_from_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/navigate_from_homeFragment_to_addPlantFragment"
+            app:destination="@id/addPlantFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addPlantFragment"
+        android:name="com.example.plantmanager.fragments.AddPlantFragment"
+        android:label="fragment_add_plant"
+        tools:layout="@layout/fragment_add_plant"/>
 </navigation>
