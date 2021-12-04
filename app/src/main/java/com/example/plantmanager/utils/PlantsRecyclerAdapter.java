@@ -33,6 +33,7 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.item = plants.get(position);
         holder.title.setText(holder.item.getName());
+        holder.lastWatered.append(holder.item.getLastWatered().toString());
         //holder.view.setOnClickListener(v -> Toast.makeText(holder.view.getContext(), "clicked",Toast.LENGTH_LONG));
     }
 
@@ -45,11 +46,13 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public Plant item;
         public final TextView title;
+        public final TextView lastWatered;
         public final OnItemListener<Plant> onItemListener;
 
         public ViewHolder(PlantListItemBinding binding, OnItemListener<Plant> onItemListener) {
             super(binding.getRoot());
             this.title = binding.plantTitle;
+            this.lastWatered = binding.lastWatered;
             this.onItemListener = onItemListener;
             binding.getRoot().setOnClickListener(this);
         }

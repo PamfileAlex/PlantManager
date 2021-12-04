@@ -29,24 +29,26 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/last_watered"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:lines="1"
             android:maxLines="1"
-            android:text="Last watered:"
+            android:text="Last watered: "
             android:textColor="#740C0C0C"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/next_water"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:lines="1"
             android:maxLines="1"
-            android:text="Last watered:"
+            android:text="Next water: "
             android:textColor="#740C0C0C"
             android:textSize="14sp" />
 
