@@ -51,10 +51,14 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
 
         public ViewHolder(PlantListItemBinding binding, OnItemListener<Plant> onItemListener) {
             super(binding.getRoot());
-            this.title = binding.plantTitle;
+            this.title = binding.tvPlantTitle;
             this.lastWatered = binding.lastWatered;
             this.onItemListener = onItemListener;
             binding.getRoot().setOnClickListener(this);
+
+            binding.btnWater.setOnClickListener(v -> {
+                System.out.println("PRESSED WATER BUTTON");
+            });
         }
 
         @Override
