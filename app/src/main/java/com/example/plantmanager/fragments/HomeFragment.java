@@ -49,8 +49,8 @@ public class HomeFragment extends Fragment {
         Spinner spinner = binding.customSpinner;
         SpinnerHelper.populateSpinnerWithCategories(spinner, getContext());
 
-        binding.btnAddPlant.setOnClickListener(view -> NavHostFragment.findNavController(HomeFragment.this)
-                .navigate(R.id.navigate_from_homeFragment_to_addPlantFragment));
+//        binding.btnAddPlant.setOnClickListener(view -> NavHostFragment.findNavController(HomeFragment.this)
+//                .navigate(R.id.navigate_from_homeFragment_to_addPlantFragment));
 
         return binding.getRoot();
     }
