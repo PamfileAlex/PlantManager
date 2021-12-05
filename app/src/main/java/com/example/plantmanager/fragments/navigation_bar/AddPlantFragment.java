@@ -1,4 +1,4 @@
-package com.example.plantmanager.fragments;
+package com.example.plantmanager.fragments.navigation_bar;
 
 import android.os.Bundle;
 

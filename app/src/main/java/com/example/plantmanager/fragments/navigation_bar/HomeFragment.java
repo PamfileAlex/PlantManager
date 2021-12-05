@@ -1,4 +1,4 @@
-package com.example.plantmanager.fragments;
+package com.example.plantmanager.fragments.navigation_bar;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.plantmanager.R;
 import com.example.plantmanager.databinding.FragmentHomeBinding;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.OnItemListener;
