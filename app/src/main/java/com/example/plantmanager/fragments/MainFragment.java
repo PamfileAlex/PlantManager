@@ -45,7 +45,7 @@ public class MainFragment extends Fragment {
                 if (viewModel.getSelectedNavigationBarFragment() == R.id.home) {
                     break;
                 }
-                NavHostFragment.findNavController(FragmentManager.findFragment(new HomeFragment())).navigate(viewModel.getNavigation(R.id.home));
+                //NavHostFragment.findNavController(FragmentManager.findFragment(new HomeFragment())).navigate(viewModel.getNavigation(R.id.home));
                 viewModel.setSelectedNavigationBarFragment(R.id.home);
                 break;
             case R.id.add_plant:
