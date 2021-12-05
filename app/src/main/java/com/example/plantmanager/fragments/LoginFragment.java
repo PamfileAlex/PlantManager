@@ -57,6 +57,6 @@ public class LoginFragment extends Fragment {
 
         userViewModel.setUser(user);
         CurrentUser.INSTANCE.setUser(user);
-        NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.navigate_from_loginFragment_to_homeFragment);
+        NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.navigate_from_loginFragment_to_mainFragment);
     }
 }
