@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         binding.plantList.setAdapter(new PlantsRecyclerAdapter(mViewModel.getPlants(), onItemListener));
         Spinner spinner = binding.customSpinner;
-        SpinnerHelper.populateSpinnerWithCategories(spinner, getContext());
+        SpinnerHelper.populateSpinnerWithCategories(spinner, getContext(), mViewModel.getCategories());
 
 //        binding.btnAddPlant.setOnClickListener(view -> NavHostFragment.findNavController(HomeFragment.this)
 //                .navigate(R.id.navigate_from_homeFragment_to_addPlantFragment));

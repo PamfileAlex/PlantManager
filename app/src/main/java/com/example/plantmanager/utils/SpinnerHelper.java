@@ -14,7 +14,18 @@ public class SpinnerHelper {
         ArrayList<Category> categories = CategoryDataAccess.getCategories();
         ArrayList<String> categoriesNames = new ArrayList<>();
 
-        for(Category category:categories)
+        for (Category category : categories)
+            categoriesNames.add(category.getName());
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.dropdown_item, categoriesNames);
+        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
+        spinner.setAdapter(adapter);
+    }
+
+    public static void populateSpinnerWithCategories(Spinner spinner, android.content.Context context, ArrayList<Category> categories) {
+        ArrayList<String> categoriesNames = new ArrayList<>();
+
+        for (Category category : categories)
             categoriesNames.add(category.getName());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.dropdown_item, categoriesNames);
