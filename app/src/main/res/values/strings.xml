@@ -34,4 +34,7 @@
     <string name="last_watered">Last watered: </string>
     <string name="next_water">Next water: </string>
     <string name="water">WATER</string>
+
+    <!--My Profile Page-->
+    <string name="profile_save">Your profile was saved!</string>
 </resources>

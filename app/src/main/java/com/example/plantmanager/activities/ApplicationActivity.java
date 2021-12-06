@@ -11,12 +11,14 @@ import com.example.plantmanager.R;
 import com.example.plantmanager.databinding.ActivityApplicationBinding;
 import com.example.plantmanager.fragments.navigation_bar.AddPlantFragment;
 import com.example.plantmanager.fragments.navigation_bar.HomeFragment;
+import com.example.plantmanager.fragments.navigation_bar.ProfileFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class ApplicationActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     private ActivityApplicationBinding binding;
     private HomeFragment homeFragment = new HomeFragment();
     private AddPlantFragment addPlantFragment = new AddPlantFragment();
+    private ProfileFragment profileFragment = new ProfileFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class ApplicationActivity extends AppCompatActivity implements Navigation
                 getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, addPlantFragment).commit();
                 break;
             case R.id.profile:
-                //NavHostFragment.findNavController(MainFragment.this).navigate(R.id.homeFragment);
+                getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, profileFragment).commit();
                 break;
             default:
                 break;

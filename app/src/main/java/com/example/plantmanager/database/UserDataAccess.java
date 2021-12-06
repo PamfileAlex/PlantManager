@@ -124,4 +124,28 @@ public class UserDataAccess {
 
         return user;
     }
+
+    public static void updateUser(User user){
+        SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
+        UserDataAccess userManger = new UserDataAccess();
+
+        try {
+            Connection databaseConnection = sqlConnectionManager.getSqlConnection(
+                    DataAccessHelper.dbClasses,
+                    DataAccessHelper.dbConnectionUrl);
+
+            CallableStatement statement = databaseConnection.prepareCall("{call spUpdateUser(?, ?, ?, ?)}");
+
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getFirstName());
+            statement.setString(4, user.getEmail());
+
+            statement.execute();
+
+            databaseConnection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragments.navigation_bar.ProfileFragment">
+
+    <TextView
+        android:id="@+id/tv_profile_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_bottom"
+        android:layout_marginBottom="@dimen/register_margin_bottom"
+        android:text="My Profile"
+        android:textSize="@dimen/title_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding">
+
+        <TextView
+            android:layout_width="@dimen/width"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="@string/username"
+            android:textSize="@dimen/text_size" />
+
+        <EditText
+            android:id="@+id/et_profile_username"
+            android:layout_width="@dimen/width"
+            android:layout_height="@dimen/elements_height"
+            android:layout_weight="0.5"
+            android:background="@drawable/edit_text_custom"
+            android:gravity="center"
+            android:textSize="@dimen/text_size"
+            android:cursorVisible="false"
+            android:focusable="false"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding">
+
+        <TextView
+            android:layout_width="@dimen/width"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="@string/last_name"
+            android:textSize="@dimen/text_size" />
+
+        <EditText
+            android:id="@+id/et_profile_last_name"
+            android:layout_width="@dimen/width"
+            android:layout_height="@dimen/elements_height"
+            android:layout_weight="0.5"
+            android:background="@drawable/edit_text_custom"
+            android:gravity="center"
+            android:textSize="@dimen/text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding">
+
+        <TextView
+            android:layout_width="@dimen/width"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="@string/first_name"
+            android:textSize="@dimen/text_size" />
+
+        <EditText
+            android:id="@+id/et_profile_first_name"
+            android:layout_width="@dimen/width"
+            android:layout_height="@dimen/elements_height"
+            android:layout_weight="0.5"
+            android:background="@drawable/edit_text_custom"
+            android:gravity="center"
+            android:textSize="@dimen/text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding">
+
+        <TextView
+            android:layout_width="@dimen/width"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="@string/email"
+            android:textSize="@dimen/text_size" />
+
+        <EditText
+            android:id="@+id/et_profile_email"
+            android:layout_width="@dimen/width"
+            android:layout_height="@dimen/elements_height"
+            android:layout_weight="0.5"
+            android:background="@drawable/edit_text_custom"
+            android:gravity="center"
+            android:textSize="@dimen/text_size" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/elements_height"
+        android:layout_below="@id/et_login_password"
+        android:layout_marginLeft="@dimen/margin_left_right"
+        android:layout_marginTop="@dimen/margin_top_bottom"
+        android:layout_marginRight="@dimen/margin_left_right"
+        android:layout_marginBottom="@dimen/margin_top_bottom"
+        android:background="@drawable/button_custom"
+        android:text="save"
+        android:textColor="@android:color/white" />
+</LinearLayout>
