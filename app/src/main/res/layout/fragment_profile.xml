@@ -8,13 +8,22 @@
     android:orientation="vertical"
     tools:context=".fragments.navigation_bar.ProfileFragment">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/ic_exit_to_app"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/exit" />
+
     <TextView
         android:id="@+id/tv_profile_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_top_bottom"
         android:layout_marginBottom="@dimen/register_margin_bottom"
-        android:text="My Profile"
+        android:text="@string/profile_title"
         android:textSize="@dimen/title_size" />
 
     <LinearLayout
@@ -129,6 +138,6 @@
         android:layout_marginRight="@dimen/margin_left_right"
         android:layout_marginBottom="@dimen/margin_top_bottom"
         android:background="@drawable/button_custom"
-        android:text="save"
+        android:text="@string/save"
         android:textColor="@android:color/white" />
 </LinearLayout>

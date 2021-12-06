@@ -37,4 +37,7 @@
 
     <!--My Profile Page-->
     <string name="profile_save">Your profile was saved!</string>
+    <string name="profile_title">My profile</string>
+    <string name="save">save</string>
+    <string name="exit">exit</string>
 </resources>

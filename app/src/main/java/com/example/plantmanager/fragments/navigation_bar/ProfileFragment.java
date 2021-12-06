@@ -37,6 +37,12 @@ public class ProfileFragment extends Fragment {
 
         binding.btnSave.setOnClickListener(view -> manageSave(user));
 
+        binding.exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Exit");
+            }
+        });
         return binding.getRoot();
     }
 
