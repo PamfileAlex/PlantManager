@@ -11,7 +11,6 @@ import com.example.plantmanager.utils.CurrentUser;
 import java.util.ArrayList;
 
 public class ApplicationViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
     private final ArrayList<Plant> plants;
     private final ArrayList<Category> categories;
 

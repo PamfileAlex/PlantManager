@@ -7,6 +7,7 @@
     android:background="@drawable/plant_list_item_background">
 
     <ImageView
+        android:id="@+id/plant_image"
         android:layout_width="@dimen/image_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
