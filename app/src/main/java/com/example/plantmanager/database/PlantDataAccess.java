@@ -1,8 +1,12 @@
 package com.example.plantmanager.database;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.SqlConnectionManager;
 
+import java.io.ByteArrayOutputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -28,9 +32,16 @@ public class PlantDataAccess {
             ResultSet resultSet = statement.getResultSet();
 
             while (resultSet.next()) {
+                byte[] bytes = resultSet.getBytes("image");
+                Bitmap image = null;
+
+                if (bytes != null) {
+                    image = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                }
+
                 Plant plant = new Plant(resultSet.getInt("id_plant"),
                         resultSet.getString("name"),
-                        resultSet.getString("image_url"),
+                        image,
                         resultSet.getDate("last_watered"),
                         resultSet.getInt("id_category"));
                 plants.add(plant);
@@ -43,15 +54,29 @@ public class PlantDataAccess {
         return plants;
     }
 
-    private static void insertPlant(Connection connection, Plant plant, int idUser) throws SQLException {
-        CallableStatement statement = connection.prepareCall("{call spInsertPlant(?, ?, ?, ?, ?)}");
+    public static void insertPlant(Plant plant, int idUser) {
+        SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
 
-        statement.setString(1, plant.getName());
-        statement.setDate(2, (Date) plant.getLastWatered());
-        statement.setString(3, plant.getImagePath());
-        statement.setInt(4, plant.getIdCategory());
-        statement.setInt(5, idUser);
+        try {
+            Connection databaseConnection = sqlConnectionManager.getSqlConnection(
+                    DataAccessHelper.dbClasses,
+                    DataAccessHelper.dbConnectionUrl);
+            CallableStatement statement = databaseConnection.prepareCall("{call spInsertPlant(?, ?, ?, ?, ?)}");
 
-        statement.execute();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            plant.getImage().compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] bytes = stream.toByteArray();
+
+            statement.setString(1, plant.getName());
+            statement.setDate(2, new java.sql.Date(plant.getLastWatered().getTime()));
+            statement.setBytes(3, bytes);
+            statement.setInt(4, plant.getIdCategory());
+            statement.setInt(5, idUser);
+
+            statement.execute();
+            databaseConnection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

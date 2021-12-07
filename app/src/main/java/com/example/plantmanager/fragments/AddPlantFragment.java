@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -19,22 +20,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
+import com.example.plantmanager.database.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentAddPlantBinding;
+import com.example.plantmanager.models.Category;
+import com.example.plantmanager.models.Plant;
+import com.example.plantmanager.utils.CurrentUser;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
+
+import java.util.Date;
 
 public class AddPlantFragment extends Fragment {
 
     FragmentAddPlantBinding binding;
     ApplicationViewModel applicationViewModel;
 
-    private enum Options {
+    private enum ImageOptions {
         CAMERA,
         GALLERY,
         NONE
     }
 
-    private Options option;
+    private ImageOptions imageOption;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,18 @@ public class AddPlantFragment extends Fragment {
         binding.btnAddImage.setOnClickListener(view -> {
             selectImage();
         });
+
+        binding.btnAdd.setOnClickListener(view -> {
+            PlantDataAccess.insertPlant(getPlant(), CurrentUser.INSTANCE.getUser().getId());
+        });
         return binding.getRoot();
+    }
+
+    private Plant getPlant(){
+        return new Plant(binding.etAddPlantName.getText().toString(),
+                ((BitmapDrawable)binding.image.getDrawable()).getBitmap(),
+                new Date(),
+                ((Category)binding.customSpinner.getSelectedItem()).getId());
     }
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
@@ -61,7 +79,7 @@ public class AddPlantFragment extends Fragment {
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent intent = result.getData();
-                    switch (option){
+                    switch (imageOption){
                         case CAMERA:
                             Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
                             binding.image.setImageBitmap(bitmap);
@@ -72,7 +90,7 @@ public class AddPlantFragment extends Fragment {
                         case NONE:
                             break;
                     }
-                    option = Options.NONE;
+                    imageOption = ImageOptions.NONE;
                 }
             });
 
@@ -84,17 +102,17 @@ public class AddPlantFragment extends Fragment {
             if (options[item].equals("Take Photo"))
             {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                option = Options.CAMERA;
+                imageOption = ImageOptions.CAMERA;
                 activityResultLauncher.launch(intent);
             }
             else if (options[item].equals("Choose from Gallery"))
             {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                option = Options.GALLERY;
+                imageOption = ImageOptions.GALLERY;
                 activityResultLauncher.launch(intent);
             }
             else if (options[item].equals("Cancel")) {
-                option = Options.NONE;
+                imageOption = ImageOptions.NONE;
                 dialog.dismiss();
             }
         });

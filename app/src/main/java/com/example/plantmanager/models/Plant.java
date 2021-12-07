@@ -1,23 +1,25 @@
 package com.example.plantmanager.models;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 public class Plant {
     private int id;
     private String name;
-    private String imagePath;
+    private Bitmap image;
     private Date lastWatered;
     private int idCategory;
 
-    public Plant(String name, String imagePath, Date lastWatered, int idCategory) {
+    public Plant(String name, Bitmap image, Date lastWatered, int idCategory) {
         this.name = name;
-        this.imagePath = imagePath;
+        this.image = image;
         this.lastWatered = lastWatered;
         this.idCategory = idCategory;
     }
 
-    public Plant(int id, String name, String imagePath, Date lastWatered, int idCategory) {
-        this(name, imagePath, lastWatered, idCategory);
+    public Plant(int id, String name, Bitmap image, Date lastWatered, int idCategory) {
+        this(name, image, lastWatered, idCategory);
         this.id = id;
     }
 
@@ -37,12 +39,12 @@ public class Plant {
         this.name = name;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public Bitmap getImage() {
+        return image;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 
     public Date getLastWatered() {
