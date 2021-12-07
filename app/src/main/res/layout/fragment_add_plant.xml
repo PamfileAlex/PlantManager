@@ -102,7 +102,7 @@
                 android:layout_height="@dimen/add_plant_layout_height"
                 android:layout_weight="0.5"
                 android:adjustViewBounds="true"
-                android:background="@drawable/plant" />
+                android:src="@drawable/plant" />
 
             <Button
                 android:id="@+id/btn_add_image"

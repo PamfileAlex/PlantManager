@@ -1,10 +1,19 @@
 package com.example.plantmanager.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +42,20 @@ public class AddPlantFragment extends Fragment {
         Spinner spinner = binding.customSpinner;
         SpinnerHelper.populateSpinnerWithCategories(spinner, getContext(), applicationViewModel.getCategories());
 
+        binding.btnAddImage.setOnClickListener(view -> {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            someActivityResultLauncher.launch(intent);
+        });
         return binding.getRoot();
     }
+
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+
+                    Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                    binding.image.setImageBitmap(bitmap);
+                }
+            });
 }
