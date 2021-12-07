@@ -33,8 +33,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void manageLogin() {
-        User user = UserDataAccess.getUser(binding.etLoginUsername.getText().toString(),
-                binding.etLoginPassword.getText().toString());
+        String username = binding.etLoginUsername.getText().toString();
+        String password = binding.etLoginPassword.getText().toString();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            Toast.makeText(LoginActivity.this, R.string.incomplete_form, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        User user = UserDataAccess.getUser(username, password);
         if (user == null) {
             Toast.makeText(LoginActivity.this, R.string.wrong_credentials, Toast.LENGTH_SHORT).show();
             return;
