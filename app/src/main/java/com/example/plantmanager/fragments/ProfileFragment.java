@@ -45,7 +45,7 @@ public class ProfileFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void populateFields(User user){
+    private void populateFields(User user) {
         binding.etProfileLastName.setText(user.getLastName());
         binding.etProfileFirstName.setText(user.getFirstName());
         binding.etProfileEmail.setText(user.getEmail());
@@ -58,7 +58,7 @@ public class ProfileFragment extends Fragment {
         String email = binding.etProfileEmail.getText().toString();
 
         if (lastName.equals("") || firstName.equals("") || email.equals("")) {
-            Toast.makeText(getContext(), R.string.empty_field, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.incomplete_form, Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
     private final OnItemListener<Plant> onItemListener = new OnItemListener<Plant>() {
         @Override
         public void onItemClick(Plant item, int position) {
-            Toast.makeText(getParentFragment().getContext(), "clicked " + position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "clicked " + position, Toast.LENGTH_SHORT).show();
         }
     };
 

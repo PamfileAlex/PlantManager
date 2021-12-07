@@ -34,13 +34,13 @@ public class RegisterActivity extends AppCompatActivity {
         String password = binding.etRegisterPassword.getText().toString();
         String confirmPassword = binding.etRegisterConfirmPassword.getText().toString();
 
-        if (lastName.equals("") || firstName.equals("") || email.equals("") ||
-                username.equals("") || password.equals("") || confirmPassword.equals("")) {
-            Toast.makeText(RegisterActivity.this, R.string.empty_field, Toast.LENGTH_SHORT).show();
+        if (lastName.isEmpty() || firstName.isEmpty() || email.isEmpty() ||
+                username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            Toast.makeText(RegisterActivity.this, R.string.incomplete_form, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!checkPassword(password, confirmPassword)) {
+        if (!password.equals(confirmPassword)) {
             Toast.makeText(RegisterActivity.this, R.string.not_same_password, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -56,9 +56,5 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(RegisterActivity.this, R.string.register_succeeded, Toast.LENGTH_SHORT).show();
 
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-    }
-
-    private boolean checkPassword(String password, String confirmPassword) {
-        return password.equals(confirmPassword);
     }
 }

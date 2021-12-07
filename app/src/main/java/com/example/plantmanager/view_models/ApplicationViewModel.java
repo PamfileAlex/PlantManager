@@ -11,12 +11,16 @@ import com.example.plantmanager.utils.CurrentUser;
 import java.util.ArrayList;
 
 public class ApplicationViewModel extends ViewModel {
+    private final ArrayList<Plant> allPlants;
     private final ArrayList<Plant> plants;
     private final ArrayList<Category> categories;
+    private Category currentCategory;
 
     public ApplicationViewModel() {
-        this.plants = PlantDataAccess.getPlants(CurrentUser.INSTANCE.getUser().getId());
+        this.allPlants = PlantDataAccess.getPlants(CurrentUser.INSTANCE.getUser().getId());
+        plants = allPlants;
         categories = CategoryDataAccess.getCategories();
+        //currentCategory = categories.get(0);
     }
 
     public ArrayList<Plant> getPlants() {
@@ -25,5 +29,13 @@ public class ApplicationViewModel extends ViewModel {
 
     public ArrayList<Category> getCategories() {
         return categories;
+    }
+
+    public Category getCurrentCategory() {
+        return currentCategory;
+    }
+
+    public void setCurrentCategory(Category currentCategory) {
+        this.currentCategory = currentCategory;
     }
 }

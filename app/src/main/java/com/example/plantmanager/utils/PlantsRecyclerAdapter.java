@@ -32,11 +32,7 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.item = plants.get(position);
-        holder.title.setText(holder.item.getName());
-        holder.lastWatered.append(holder.item.getLastWatered().toString());
-        holder.image.setImageBitmap(holder.item.getImage());
-        //holder.view.setOnClickListener(v -> Toast.makeText(holder.view.getContext(), "clicked",Toast.LENGTH_LONG));
+        holder.onBind(plants.get(position));
     }
 
     @Override
@@ -46,11 +42,11 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public Plant item;
-        public final TextView title;
-        public final TextView lastWatered;
-        public final ImageView image;
-        public final OnItemListener<Plant> onItemListener;
+        private Plant item;
+        private final TextView title;
+        private final TextView lastWatered;
+        private final ImageView image;
+        private final OnItemListener<Plant> onItemListener;
 
         public ViewHolder(PlantListItemBinding binding, OnItemListener<Plant> onItemListener) {
             super(binding.getRoot());
@@ -63,6 +59,13 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
             binding.btnWater.setOnClickListener(v -> {
                 System.out.println("PRESSED WATER BUTTON");
             });
+        }
+
+        public void onBind(Plant plant) {
+            item = plant;
+            title.setText(plant.getName());
+            lastWatered.append(plant.getLastWatered().toString());
+            image.setImageBitmap(plant.getImage());
         }
 
         @Override
