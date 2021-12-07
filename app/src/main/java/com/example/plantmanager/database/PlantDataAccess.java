@@ -1,11 +1,8 @@
 package com.example.plantmanager.database;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.example.plantmanager.models.Plant;
+import com.example.plantmanager.utils.BitmapUtils;
 
-import java.io.ByteArrayOutputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -27,16 +24,9 @@ public final class PlantDataAccess {
             ResultSet resultSet = statement.getResultSet();
 
             while (resultSet.next()) {
-                byte[] bytes = resultSet.getBytes("image");
-                Bitmap image = null;
-
-                if (bytes != null) {
-                    image = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                }
-
                 Plant plant = new Plant(resultSet.getInt("id_plant"),
                         resultSet.getString("name"),
-                        image,
+                        BitmapUtils.fromBytes(resultSet.getBytes("image")),
                         resultSet.getDate("last_watered"),
                         resultSet.getInt("id_category"));
                 plants.add(plant);
@@ -54,13 +44,9 @@ public final class PlantDataAccess {
             Connection databaseConnection = DataAccessHelper.getConnection();
             CallableStatement statement = databaseConnection.prepareCall("{call spInsertPlant(?, ?, ?, ?, ?)}");
 
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            plant.getImage().compress(Bitmap.CompressFormat.PNG, 100, stream);
-            byte[] bytes = stream.toByteArray();
-
             statement.setString(1, plant.getName());
             statement.setDate(2, new java.sql.Date(plant.getLastWatered().getTime()));
-            statement.setBytes(3, bytes);
+            statement.setBytes(3, BitmapUtils.fromBitmap(plant.getImage()));
             statement.setInt(4, plant.getIdCategory());
             statement.setInt(5, idUser);
 
