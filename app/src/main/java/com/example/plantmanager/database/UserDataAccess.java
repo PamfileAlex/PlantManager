@@ -6,30 +6,8 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public final class UserDataAccess {
-    public static ArrayList<User> getUsers(Connection connection) throws SQLException {
-        ArrayList<User> users = new ArrayList<>();
-
-        CallableStatement statement = connection.prepareCall("{call spSelectUsers}");
-        statement.execute();
-
-        ResultSet resultSet = statement.getResultSet();
-
-        while (resultSet.next()) {
-            User user = new User(resultSet.getInt("id_user"),
-                    resultSet.getString("last_name"),
-                    resultSet.getString("first_name"),
-                    resultSet.getString("email"),
-                    resultSet.getString("username"),
-                    resultSet.getString("password"));
-            users.add(user);
-        }
-
-        return users;
-    }
-
     public static void insertUser(User user) {
         try {
             Connection databaseConnection = DataAccessHelper.getConnection();
