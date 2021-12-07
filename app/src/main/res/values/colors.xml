@@ -4,4 +4,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="teal">#086e64</color>
+    <color name="dark_grey">#740C0C0C</color>
+    <color name="dark_blue">#2b3e50</color>
 </resources>

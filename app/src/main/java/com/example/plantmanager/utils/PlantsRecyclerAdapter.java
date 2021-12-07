@@ -3,6 +3,7 @@ package com.example.plantmanager.utils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
         holder.item = plants.get(position);
         holder.title.setText(holder.item.getName());
         holder.lastWatered.append(holder.item.getLastWatered().toString());
+        holder.image.setImageBitmap(holder.item.getImage());
         //holder.view.setOnClickListener(v -> Toast.makeText(holder.view.getContext(), "clicked",Toast.LENGTH_LONG));
     }
 
@@ -47,12 +49,14 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
         public Plant item;
         public final TextView title;
         public final TextView lastWatered;
+        public final ImageView image;
         public final OnItemListener<Plant> onItemListener;
 
         public ViewHolder(PlantListItemBinding binding, OnItemListener<Plant> onItemListener) {
             super(binding.getRoot());
             this.title = binding.tvPlantTitle;
-            this.lastWatered = binding.lastWatered;
+            this.lastWatered = binding.tvLastWatered;
+            this.image = binding.plantImage;
             this.onItemListener = onItemListener;
             binding.getRoot().setOnClickListener(this);
 

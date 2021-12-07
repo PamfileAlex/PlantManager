@@ -1,15 +1,18 @@
 <resources>
     <string name="app_name">PlantManager</string>
 
+    <!--Database-->
     <string name="db_classes">net.sourceforge.jtds.jdbc.Driver</string>
     <string name="db_connection_url">jdbc:jtds:sqlserver://172.27.160.1:1433;databaseName=PlantManager;user=sa;password="1234;instance=SQLEXPRESS;</string>
 
+    <!--Login Page-->
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="click_to_register"><u>Click here to register</u></string>
     <string name="wrong_credentials">Invalid username or password!</string>
 
+    <!--Register Page-->
     <string name="register">Register</string>
     <string name="last_name">Last Name</string>
     <string name="first_name">First Name</string>
@@ -19,4 +22,22 @@
     <string name="username_already_exists">This username already exists!</string>
     <string name="empty_field">Please complete all fields!</string>
     <string name="register_succeeded">Your account has been created!</string>
+
+    <!--Add plant Page-->
+    <string name="add_plant_title">Add plant</string>
+    <string name="plant_name">Plant name</string>
+    <string name="plant_image">Add image</string>
+    <string name="plant_category">Plant category</string>
+
+    <!--Plant list item-->
+    <string name="plant_title">Plant title</string>
+    <string name="last_watered">Last watered: </string>
+    <string name="next_water">Next water: </string>
+    <string name="water">WATER</string>
+
+    <!--My Profile Page-->
+    <string name="profile_save">Your profile was saved!</string>
+    <string name="profile_title">My profile</string>
+    <string name="save">save</string>
+    <string name="exit">exit</string>
 </resources>

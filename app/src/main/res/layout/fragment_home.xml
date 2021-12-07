@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment"
     android:background="#F1EEEE"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".fragments.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_top_bottom"
         android:background="@drawable/spinner_border"
         android:orientation="horizontal">
 
         <Spinner
             android:id="@+id/custom_spinner"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/layout_height_width"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
@@ -26,8 +27,8 @@
             android:spinnerMode="dropdown" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/layout_height_width"
+            android:layout_height="@dimen/layout_height_width"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
@@ -35,11 +36,10 @@
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/plant_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/plant_list_item" />
-
 </LinearLayout>
