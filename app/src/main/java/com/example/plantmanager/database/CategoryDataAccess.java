@@ -1,7 +1,6 @@
 package com.example.plantmanager.database;
 
 import com.example.plantmanager.models.Category;
-import com.example.plantmanager.utils.SqlConnectionManager;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -11,13 +10,10 @@ import java.util.ArrayList;
 
 public class CategoryDataAccess {
     public static ArrayList<Category> getCategories() {
-        SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
         ArrayList<Category> categories = new ArrayList<>();
 
         try {
-            Connection databaseConnection = sqlConnectionManager.getSqlConnection(
-                    DataAccessHelper.dbClasses,
-                    DataAccessHelper.dbConnectionUrl);
+            Connection databaseConnection = DataAccessHelper.getConnection();
 
             CallableStatement statement = databaseConnection.prepareCall("{call spSelectCategories}");
             statement.execute();

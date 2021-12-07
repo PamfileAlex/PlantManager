@@ -4,25 +4,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.plantmanager.models.Plant;
-import com.example.plantmanager.utils.SqlConnectionManager;
 
 import java.io.ByteArrayOutputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PlantDataAccess {
+public final class PlantDataAccess {
     public static ArrayList<Plant> getPlants(int idUser) {
-        SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
         ArrayList<Plant> plants = new ArrayList<>();
 
         try {
-            Connection databaseConnection = sqlConnectionManager.getSqlConnection(
-                    DataAccessHelper.dbClasses,
-                    DataAccessHelper.dbConnectionUrl);
+            Connection databaseConnection = DataAccessHelper.getConnection();
 
             CallableStatement statement = databaseConnection.prepareCall("{call spGetPlantsByUserId(?)}");
 
@@ -55,12 +50,8 @@ public class PlantDataAccess {
     }
 
     public static void insertPlant(Plant plant, int idUser) {
-        SqlConnectionManager sqlConnectionManager = new SqlConnectionManager();
-
         try {
-            Connection databaseConnection = sqlConnectionManager.getSqlConnection(
-                    DataAccessHelper.dbClasses,
-                    DataAccessHelper.dbConnectionUrl);
+            Connection databaseConnection = DataAccessHelper.getConnection();
             CallableStatement statement = databaseConnection.prepareCall("{call spInsertPlant(?, ?, ?, ?, ?)}");
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
