@@ -1,9 +1,9 @@
-package com.example.plantmanager.fragments.navigation_bar;
+package com.example.plantmanager.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.plantmanager.R;
-import com.example.plantmanager.activities.LoginActivity;
-import com.example.plantmanager.activities.RegisterActivity;
 import com.example.plantmanager.database.UserDataAccess;
 import com.example.plantmanager.databinding.FragmentProfileBinding;
 import com.example.plantmanager.models.User;
 import com.example.plantmanager.utils.CurrentUser;
+import com.example.plantmanager.view_models.ApplicationViewModel;
 
 public class ProfileFragment extends Fragment {
 

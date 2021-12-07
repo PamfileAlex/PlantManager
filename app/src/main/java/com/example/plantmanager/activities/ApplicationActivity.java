@@ -2,16 +2,15 @@ package com.example.plantmanager.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.plantmanager.R;
 import com.example.plantmanager.databinding.ActivityApplicationBinding;
-import com.example.plantmanager.fragments.navigation_bar.AddPlantFragment;
-import com.example.plantmanager.fragments.navigation_bar.HomeFragment;
-import com.example.plantmanager.fragments.navigation_bar.ProfileFragment;
+import com.example.plantmanager.fragments.AddPlantFragment;
+import com.example.plantmanager.fragments.HomeFragment;
+import com.example.plantmanager.fragments.ProfileFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class ApplicationActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {

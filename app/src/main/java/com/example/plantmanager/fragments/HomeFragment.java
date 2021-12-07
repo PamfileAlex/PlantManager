@@ -1,4 +1,4 @@
-package com.example.plantmanager.fragments.navigation_bar;
+package com.example.plantmanager.fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,14 +19,12 @@ import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.OnItemListener;
 import com.example.plantmanager.utils.PlantsRecyclerAdapter;
 import com.example.plantmanager.utils.SpinnerHelper;
-import com.example.plantmanager.view_models.HomeViewModel;
-import com.example.plantmanager.view_models.UserViewModel;
+import com.example.plantmanager.view_models.ApplicationViewModel;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private HomeViewModel mViewModel;
-    private UserViewModel userViewModel;
+    private ApplicationViewModel mViewModel;
 
     private final OnItemListener<Plant> onItemListener = new OnItemListener<Plant>() {
         @Override
@@ -56,8 +54,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(ApplicationViewModel.class);
         // TODO: Use the ViewModel
     }
 }
