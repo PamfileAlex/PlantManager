@@ -7,7 +7,7 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:context=".activities.LoginActivity"
-        android:background="@drawable/plant_background">
+        android:background="@drawable/plant_first_background">
 
         <TextView
             android:id="@+id/tv_register_title"
@@ -15,7 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_title"
             android:text="@string/app_name"
-            android:textSize="@dimen/login_title_size"/>
+            android:textSize="@dimen/login_title_size"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/et_login_username"
