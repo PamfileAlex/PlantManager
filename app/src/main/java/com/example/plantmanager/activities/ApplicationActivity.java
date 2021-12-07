@@ -15,9 +15,9 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class ApplicationActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     private ActivityApplicationBinding binding;
-    private HomeFragment homeFragment = new HomeFragment();
-    private AddPlantFragment addPlantFragment = new AddPlantFragment();
-    private ProfileFragment profileFragment = new ProfileFragment();
+    private final HomeFragment homeFragment = new HomeFragment();
+    private final AddPlantFragment addPlantFragment = new AddPlantFragment();
+    private final ProfileFragment profileFragment = new ProfileFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class ApplicationActivity extends AppCompatActivity implements Navigation
 
         binding.bottomNavigation.setOnItemSelectedListener(this);
         binding.bottomNavigation.setSelectedItemId(R.id.home);
-        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, homeFragment).commit();
 
         setContentView(binding.getRoot());
         //setContentView(R.layout.activity_application);
@@ -36,13 +36,13 @@ public class ApplicationActivity extends AppCompatActivity implements Navigation
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, homeFragment).commit();
                 break;
             case R.id.add_plant:
-                getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, addPlantFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, addPlantFragment).commit();
                 break;
             case R.id.profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, profileFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, profileFragment).commit();
                 break;
             default:
                 break;
