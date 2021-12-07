@@ -9,7 +9,7 @@
     tools:context=".fragments.ProfileFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/exit"
+        android:id="@+id/exit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
