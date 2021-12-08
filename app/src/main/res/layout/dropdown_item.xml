@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textSize="@dimen/text_size"
+    android:textColor="@color/black"
     android:ellipsize="marquee"
     android:paddingStart="@dimen/dropdown_padding"
     android:paddingEnd="@dimen/dropdown_padding"

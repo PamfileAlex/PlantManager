@@ -27,7 +27,8 @@
             android:layout_marginEnd="@dimen/margin_top_bottom"
             android:layout_marginBottom="@dimen/margin_top_bottom"
             android:text="@string/plant_title"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="@dimen/plant_list_item_text_size" />
 
         <TextView
@@ -62,6 +63,7 @@
             android:layout_marginEnd="@dimen/margin_left_right"
             android:background="@drawable/button_custom"
             android:text="@string/water"
+            android:textSize="@dimen/text_size"
             android:textAllCaps="false" />
     </LinearLayout>
 </LinearLayout>

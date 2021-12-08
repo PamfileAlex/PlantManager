@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background"
     tools:context=".fragments.AddPlantFragment">
 
     <LinearLayout
@@ -19,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_title"
             android:text="@string/add_plant_title"
+            android:textColor="@color/black"
             android:textSize="@dimen/title_size" />
 
         <LinearLayout
@@ -34,6 +36,7 @@
                 android:layout_weight="0.5"
                 android:gravity="center"
                 android:text="@string/plant_name"
+                android:textColor="@color/black"
                 android:textSize="@dimen/text_size" />
 
             <EditText
@@ -44,6 +47,7 @@
                 android:background="@drawable/edit_text_custom"
                 android:gravity="center"
                 android:hint="@string/plant_name"
+                android:textColor="@color/black"
                 android:textSize="@dimen/text_size" />
         </LinearLayout>
 
@@ -60,6 +64,7 @@
                 android:layout_weight="0.5"
                 android:gravity="center"
                 android:text="@string/plant_category"
+                android:textColor="@color/black"
                 android:textSize="@dimen/text_size" />
 
             <RelativeLayout
@@ -113,7 +118,8 @@
                 android:background="@drawable/button_custom"
                 android:gravity="center"
                 android:text="@string/plant_image"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size" />
         </LinearLayout>
 
         <Button
@@ -125,7 +131,8 @@
             android:layout_marginRight="@dimen/margin_left_right"
             android:background="@drawable/button_custom"
             android:text="@string/add_plant_title"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size" />
 
     </LinearLayout>
 </ScrollView>

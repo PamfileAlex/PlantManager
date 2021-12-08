@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".fragments.ProfileFragment">
@@ -13,9 +14,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:src="@drawable/ic_exit_to_app"
         android:layout_margin="16dp"
-        android:contentDescription="@string/exit" />
+        android:contentDescription="@string/exit"
+        android:src="@drawable/ic_exit_to_app" />
 
     <TextView
         android:id="@+id/tv_profile_title"
@@ -24,6 +25,7 @@
         android:layout_marginTop="@dimen/margin_top_bottom"
         android:layout_marginBottom="@dimen/register_margin_bottom"
         android:text="@string/profile_title"
+        android:textColor="@color/black"
         android:textSize="@dimen/title_size" />
 
     <LinearLayout
@@ -39,6 +41,7 @@
             android:layout_weight="0.5"
             android:gravity="center"
             android:text="@string/username"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
         <EditText
@@ -47,10 +50,11 @@
             android:layout_height="@dimen/elements_height"
             android:layout_weight="0.5"
             android:background="@drawable/edit_text_custom"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
             android:cursorVisible="false"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,6 +70,7 @@
             android:layout_weight="0.5"
             android:gravity="center"
             android:text="@string/last_name"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
         <EditText
@@ -75,6 +80,7 @@
             android:layout_weight="0.5"
             android:background="@drawable/edit_text_custom"
             android:gravity="center"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
     </LinearLayout>
 
@@ -91,6 +97,7 @@
             android:layout_weight="0.5"
             android:gravity="center"
             android:text="@string/first_name"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
         <EditText
@@ -100,6 +107,7 @@
             android:layout_weight="0.5"
             android:background="@drawable/edit_text_custom"
             android:gravity="center"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
     </LinearLayout>
 
@@ -116,6 +124,7 @@
             android:layout_weight="0.5"
             android:gravity="center"
             android:text="@string/email"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
         <EditText
@@ -125,6 +134,7 @@
             android:layout_weight="0.5"
             android:background="@drawable/edit_text_custom"
             android:gravity="center"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
     </LinearLayout>
 
@@ -139,5 +149,6 @@
         android:layout_marginBottom="@dimen/margin_top_bottom"
         android:background="@drawable/button_custom"
         android:text="@string/save"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size" />
 </LinearLayout>
