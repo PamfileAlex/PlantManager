@@ -1,5 +1,6 @@
 package com.example.plantmanager.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.plantmanager.R;
+import com.example.plantmanager.activities.ApplicationActivity;
+import com.example.plantmanager.activities.LoginActivity;
 import com.example.plantmanager.database.UserDataAccess;
 import com.example.plantmanager.databinding.FragmentProfileBinding;
 import com.example.plantmanager.models.User;
@@ -36,10 +39,12 @@ public class ProfileFragment extends Fragment {
 
         binding.btnSave.setOnClickListener(view -> manageSave(user));
 
-        binding.exit.setOnClickListener(new View.OnClickListener() {
+        binding.exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Exit");
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
         return binding.getRoot();

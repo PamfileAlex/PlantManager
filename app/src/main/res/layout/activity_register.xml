@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/plant_first_background"
+    tools:context=".activities.RegisterActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        tools:context=".activities.RegisterActivity">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_register_title"
@@ -19,7 +20,9 @@
             android:layout_marginTop="@dimen/margin_top_bottom"
             android:layout_marginBottom="@dimen/register_margin_bottom"
             android:text="@string/register"
-            android:textSize="@dimen/title_size" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_size"
+            android:fontFamily="@font/cookie_regular"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +37,9 @@
                 android:layout_weight="0.5"
                 android:gravity="center"
                 android:text="@string/last_name"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
 
             <EditText
                 android:id="@+id/et_register_last_name"
@@ -44,7 +49,9 @@
                 android:background="@drawable/edit_text_custom"
                 android:gravity="center"
                 android:hint="@string/last_name"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -60,7 +67,9 @@
                 android:layout_weight="0.5"
                 android:gravity="center"
                 android:text="@string/first_name"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
 
             <EditText
                 android:id="@+id/et_register_first_name"
@@ -70,7 +79,9 @@
                 android:background="@drawable/edit_text_custom"
                 android:gravity="center"
                 android:hint="@string/first_name"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +97,9 @@
                 android:layout_weight="0.5"
                 android:gravity="center"
                 android:text="@string/email"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
 
             <EditText
                 android:id="@+id/et_register_email"
@@ -96,7 +109,9 @@
                 android:background="@drawable/edit_text_custom"
                 android:gravity="center"
                 android:hint="@string/email"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -112,7 +127,9 @@
                 android:layout_weight="0.5"
                 android:gravity="center"
                 android:text="@string/username"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
 
             <EditText
                 android:id="@+id/et_register_username"
@@ -122,7 +139,9 @@
                 android:background="@drawable/edit_text_custom"
                 android:gravity="center"
                 android:hint="@string/username"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -138,7 +157,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/password"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
 
             <EditText
                 android:id="@+id/et_register_password"
@@ -149,7 +170,9 @@
                 android:gravity="center"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -165,7 +188,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/confirm_password"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
 
             <EditText
                 android:id="@+id/et_register_confirm_password"
@@ -176,7 +201,9 @@
                 android:gravity="center"
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
-                android:textSize="@dimen/text_size" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:fontFamily="@font/roboto_regular"/>
         </LinearLayout>
 
         <Button
@@ -190,6 +217,8 @@
             android:layout_marginBottom="@dimen/margin_top_bottom"
             android:background="@drawable/button_custom"
             android:text="@string/register"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size"
+            android:fontFamily="@font/roboto_regular"/>
     </LinearLayout>
 </ScrollView>
