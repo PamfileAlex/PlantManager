@@ -29,7 +29,8 @@
             android:text="@string/plant_title"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="@dimen/plant_list_item_text_size" />
+            android:textSize="@dimen/list_title_size"
+            android:fontFamily="@font/cookie_regular"/>
 
         <TextView
             android:id="@+id/tv_last_watered"
@@ -41,7 +42,8 @@
             android:maxLines="1"
             android:text="@string/last_watered"
             android:textColor="@color/dark_grey"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/text_size"
+            android:fontFamily="@font/roboto_regular"/>
 
         <TextView
             android:id="@+id/tv_next_water"
@@ -53,7 +55,8 @@
             android:maxLines="1"
             android:text="@string/next_water"
             android:textColor="@color/dark_grey"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/text_size"
+            android:fontFamily="@font/roboto_regular"/>
 
         <Button
             android:id="@+id/btn_water"
@@ -64,6 +67,7 @@
             android:background="@drawable/button_custom"
             android:text="@string/water"
             android:textSize="@dimen/text_size"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:fontFamily="@font/roboto_regular"/>
     </LinearLayout>
 </LinearLayout>

@@ -8,4 +8,5 @@
     android:paddingLeft="@dimen/dropdown_padding"
     android:paddingRight="@dimen/dropdown_padding"
     android:paddingTop="@dimen/dropdown_padding_top_bottom"
-    android:singleLine="true" />
+    android:singleLine="true"
+    android:fontFamily="@font/roboto_regular"/>

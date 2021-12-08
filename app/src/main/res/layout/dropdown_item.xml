@@ -11,4 +11,5 @@
     android:ellipsize="marquee"
     android:paddingStart="@dimen/dropdown_padding"
     android:paddingEnd="@dimen/dropdown_padding"
+    android:fontFamily="@font/roboto_regular"
     />
