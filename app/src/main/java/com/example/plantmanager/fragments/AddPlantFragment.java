@@ -54,8 +54,8 @@ public class AddPlantFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAddPlantBinding.inflate(inflater, container, false);
 
-        Spinner spinner = binding.customSpinner;
-        SpinnerHelper.populateSpinnerWithCategories(spinner, getContext(), applicationViewModel.getCategories());
+        Spinner categoryDropdown = binding.categoryDropdown;
+        SpinnerHelper.populateSpinnerWithCategories(categoryDropdown, getContext(), applicationViewModel.getCategories());
 
         binding.btnAddImage.setOnClickListener(view -> {
             selectImage();
@@ -71,7 +71,7 @@ public class AddPlantFragment extends Fragment {
         return new Plant(binding.etAddPlantName.getText().toString(),
                 ((BitmapDrawable)binding.image.getDrawable()).getBitmap(),
                 new Date(),
-                ((Category)binding.customSpinner.getSelectedItem()).getId());
+                ((Category)binding.categoryDropdown.getSelectedItem()).getId());
     }
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
