@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.plantmanager.databinding.FragmentHomeBinding;
+import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.OnItemListener;
 import com.example.plantmanager.utils.PlantsRecyclerAdapter;
@@ -41,6 +43,19 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         binding.plantList.setAdapter(new PlantsRecyclerAdapter(applicationViewModel.getPlants(), onItemListener));
         Spinner categoryDropdown = binding.categoryDropdown;
+
+        categoryDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                applicationViewModel.setCurrentCategory((Category) categoryDropdown.getSelectedItem());
+                System.out.println("SELECTED CATEGORY: " + applicationViewModel.getCurrentCategory());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         SpinnerHelper.populateSpinnerWithCategories(categoryDropdown, getContext(), applicationViewModel.getCategories());
 
