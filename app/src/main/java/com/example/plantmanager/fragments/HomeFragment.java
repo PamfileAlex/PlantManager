@@ -41,7 +41,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        binding.plantList.setAdapter(new PlantsRecyclerAdapter(applicationViewModel.getPlants(), onItemListener));
+
+        PlantsRecyclerAdapter plantsRecyclerAdapter = new PlantsRecyclerAdapter(applicationViewModel.getPlants(), onItemListener);
+        applicationViewModel.setPlantsRecyclerAdapter(plantsRecyclerAdapter);
+        binding.plantList.setAdapter(plantsRecyclerAdapter);
+
         Spinner categoryDropdown = binding.categoryDropdown;
 
         categoryDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
