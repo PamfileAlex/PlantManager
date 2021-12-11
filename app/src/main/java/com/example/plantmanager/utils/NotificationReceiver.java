@@ -10,23 +10,15 @@ import android.content.Context;
 import android.content.Intent;
 
 public class NotificationReceiver extends BroadcastReceiver {
-    public static String NOTIFICATION_ID = "notification-id" ;
-    public static String NOTIFICATION = "notification" ;
+    public static String NOTIFICATION_ID = "notification-id";
+    public static String NOTIFICATION = "notification";
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        System.out.println("ENTER NOTIFICATION RECEIVER");
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context. NOTIFICATION_SERVICE ) ;
-        Notification notification = intent.getParcelableExtra( NOTIFICATION ) ;
-//        if (android.os.Build.VERSION. SDK_INT >= android.os.Build.VERSION_CODES. O ) {
-//            int importance = NotificationManager. IMPORTANCE_HIGH ;
-//            NotificationChannel notificationChannel = new NotificationChannel( NOTIFICATION_CHANNEL_ID , "NOTIFICATION_CHANNEL_NAME" , importance) ;
-//            assert notificationManager != null;
-//            notificationManager.createNotificationChannel(notificationChannel) ;
-//        }
-        int id = intent.getIntExtra( NOTIFICATION_ID , 0 ) ;
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification notification = intent.getParcelableExtra(NOTIFICATION);
+        int id = intent.getIntExtra(NOTIFICATION_ID, 0);
         assert notificationManager != null;
-        notificationManager.notify(id , notification) ;
-        System.out.println("EXIT NOTIFICATION RECEIVER");
+        notificationManager.notify(id, notification);
     }
 }

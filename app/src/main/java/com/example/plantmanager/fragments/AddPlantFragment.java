@@ -69,25 +69,12 @@ public class AddPlantFragment extends Fragment {
 
         binding.btnAdd.setOnClickListener(view -> {
             PlantDataAccess.insertPlant(getPlant(), CurrentUser.INSTANCE.getUser().getId());
-
-//            LocalDate date = LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth());
-//            LocalTime time = LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute());
-//
-//            System.out.println(date);
-//            System.out.println(time);
         });
 
-//        binding.btnNotify.setOnClickListener(view -> {
-//            NotificationsUtils.showNotification(getActivity(), "Plant Manager Notification", "WATER THE PLANTS", 1);
-//        });
-
         binding.dpDatepicker.setMinDate(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
-
-        NotificationsUtils.createNotificationChannel(getActivity());
+        
         binding.btnNotification.setOnClickListener(view -> {
-            long currentTime = System.currentTimeMillis();
-            NotificationsUtils.scheduleNotification(getActivity(), currentTime + 5000);
-            //NotificationsUtils.sendNotification(getActivity());
+            NotificationsUtils.scheduleNotification(getActivity(), "PlantManager", "This is a notification", LocalDateTime.now());
         });
 
         return binding.getRoot();
