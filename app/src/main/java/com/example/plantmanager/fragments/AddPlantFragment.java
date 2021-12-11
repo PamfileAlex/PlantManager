@@ -25,6 +25,7 @@ import com.example.plantmanager.databinding.FragmentAddPlantBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.CurrentUser;
+import com.example.plantmanager.utils.NotificationsUtils;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
 
@@ -82,6 +83,13 @@ public class AddPlantFragment extends Fragment {
 
         binding.dpDatepicker.setMinDate(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
+        NotificationsUtils.createNotificationChannel(getActivity());
+        binding.btnNotification.setOnClickListener(view -> {
+            long currentTime = System.currentTimeMillis();
+            NotificationsUtils.scheduleNotification(getActivity(), currentTime + 5000);
+            //NotificationsUtils.sendNotification(getActivity());
+        });
+
         return binding.getRoot();
     }
 
@@ -93,7 +101,7 @@ public class AddPlantFragment extends Fragment {
                 LocalDate.now(),
                 LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth()),
                 LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute())
-                );
+        );
     }
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(

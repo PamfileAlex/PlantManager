@@ -18,11 +18,11 @@
             android:id="@+id/tv_add_plant_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/add_plant_margin_button"
             android:fontFamily="@font/cookie_regular"
             android:text="@string/add_plant_title"
             android:textColor="@color/black"
-            android:textSize="@dimen/title_size"
-            android:layout_marginBottom="@dimen/add_plant_margin_button"/>
+            android:textSize="@dimen/title_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,6 +130,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
+
             <TimePicker
                 android:id="@+id/tp_timepicker"
                 android:layout_width="wrap_content"
@@ -174,6 +175,18 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size" />
 
+        <Button
+            android:id="@+id/btn_notification"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/elements_height"
+            android:layout_marginLeft="@dimen/margin_left_right"
+            android:layout_marginTop="@dimen/add_plant_margin_button"
+            android:layout_marginRight="@dimen/margin_left_right"
+            android:background="@drawable/button_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:text="NOTIFICATION"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size" />
 
     </LinearLayout>
 </ScrollView>
