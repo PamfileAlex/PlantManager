@@ -1,15 +1,9 @@
 package com.example.plantmanager.fragments;
 
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,20 +15,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
-import com.example.plantmanager.activities.ApplicationActivity;
 import com.example.plantmanager.database.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentAddPlantBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.CurrentUser;
 import com.example.plantmanager.utils.NotificationsUtils;
-import com.example.plantmanager.utils.Reminder;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
 
@@ -76,13 +67,7 @@ public class AddPlantFragment extends Fragment {
             PlantDataAccess.insertPlant(getPlant(), CurrentUser.INSTANCE.getUser().getId());
         });
 
-        //NotificationsUtils.createNotificationChannel(getActivity());
-
         binding.btnNotify.setOnClickListener(view -> {
-            //NotificationsUtils.sendNotification(getActivity());
-//            int reqCode = 1;
-//            Intent intent = new Intent(getActivity().getApplicationContext(), getActivity().getClass());
-//            NotificationsUtils.showNotification(getActivity(), "Title", "This is the message to display", intent, reqCode);
             NotificationsUtils.showNotification(getActivity(), "Plant Manager Notification", "WATER THE PLANTS", 1);
         });
         return binding.getRoot();
