@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
+import com.example.plantmanager.activities.ApplicationActivity;
 import com.example.plantmanager.database.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentAddPlantBinding;
 import com.example.plantmanager.models.Category;
@@ -75,10 +76,14 @@ public class AddPlantFragment extends Fragment {
             PlantDataAccess.insertPlant(getPlant(), CurrentUser.INSTANCE.getUser().getId());
         });
 
-        NotificationsUtils.createNotificationChannel(getActivity());
+        //NotificationsUtils.createNotificationChannel(getActivity());
 
         binding.btnNotify.setOnClickListener(view -> {
-            NotificationsUtils.sendNotification(getActivity());
+            //NotificationsUtils.sendNotification(getActivity());
+//            int reqCode = 1;
+//            Intent intent = new Intent(getActivity().getApplicationContext(), getActivity().getClass());
+//            NotificationsUtils.showNotification(getActivity(), "Title", "This is the message to display", intent, reqCode);
+            NotificationsUtils.showNotification(getActivity(), "Plant Manager Notification", "WATER THE PLANTS", 1);
         });
         return binding.getRoot();
     }
