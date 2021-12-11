@@ -12,7 +12,6 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.sql.*;
@@ -33,17 +32,12 @@ public final class PlantDataAccess {
             ResultSet resultSet = statement.getResultSet();
 
             while (resultSet.next()) {
-                java.sql.Date sqlDate = resultSet.getDate("last_watered");
-                java.util.Date date = new Date(sqlDate.getTime());
-
-                LocalDate localDate = sqlDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
                 Plant plant = new Plant(resultSet.getInt("id_plant"),
                         resultSet.getInt("id_category"),
                         resultSet.getString("name"),
                         BitmapUtils.fromBytes(resultSet.getBytes("image")),
-                        resultSet.getDate("last_watered").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                        resultSet.getDate("next_water").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                        LocalDateConverter.fromSqlDate(resultSet.getDate("last_watered")),
+                        LocalDateConverter.fromSqlDate(resultSet.getDate("next_water")),
                         resultSet.getTime("time").toInstant().atZone(ZoneId.systemDefault()).toLocalTime());
                 plants.add(plant);
             }
@@ -65,8 +59,8 @@ public final class PlantDataAccess {
             statement.setInt(2, plant.getIdCategory());
             statement.setString(3, plant.getName());
             statement.setBytes(4, BitmapUtils.fromBitmap(plant.getImage()));
-            statement.setDate(5, Date.valueOf(LocalDateConverter.ToString(plant.getLastWatered())));
-            statement.setDate(6, Date.valueOf(LocalDateConverter.ToString(plant.getNextWater())));
+            statement.setDate(5, LocalDateConverter.toSqlDate(plant.getLastWatered()));
+            statement.setDate(6, LocalDateConverter.toSqlDate(plant.getNextWater()));
             statement.setTime(7, new java.sql.Time(plant.getTime().getHour(), plant.getTime().getMinute(), 0));
             statement.setBoolean(8, true);
 
