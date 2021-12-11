@@ -18,6 +18,7 @@
 
     <dimen name="margin_title">105dp</dimen>
     <dimen name="margin_button">76dp</dimen>
+    <dimen name="add_plant_margin_button">20dp</dimen>
     <dimen name="login_margin_top_link">80dp</dimen>
     <dimen name="login_margin_bottom_link">20dp</dimen>
 
@@ -28,6 +29,7 @@
     <dimen name="elements_height">50sp</dimen>
 
     <dimen name="padding">15dp</dimen>
+    <dimen name="add_plant_padding">10dp</dimen>
     <dimen name="dropdown_padding">10dp</dimen>
     <dimen name="dropdown_padding_top_bottom">5dp</dimen>
 

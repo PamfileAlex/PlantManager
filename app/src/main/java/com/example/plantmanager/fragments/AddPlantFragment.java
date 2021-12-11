@@ -67,9 +67,9 @@ public class AddPlantFragment extends Fragment {
             PlantDataAccess.insertPlant(getPlant(), CurrentUser.INSTANCE.getUser().getId());
         });
 
-        binding.btnNotify.setOnClickListener(view -> {
-            NotificationsUtils.showNotification(getActivity(), "Plant Manager Notification", "WATER THE PLANTS", 1);
-        });
+//        binding.btnNotify.setOnClickListener(view -> {
+//            NotificationsUtils.showNotification(getActivity(), "Plant Manager Notification", "WATER THE PLANTS", 1);
+//        });
         return binding.getRoot();
     }
 

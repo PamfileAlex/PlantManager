@@ -18,18 +18,18 @@
             android:id="@+id/tv_add_plant_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_title"
             android:fontFamily="@font/cookie_regular"
             android:text="@string/add_plant_title"
             android:textColor="@color/black"
-            android:textSize="@dimen/title_size" />
+            android:textSize="@dimen/title_size"
+            android:layout_marginBottom="@dimen/add_plant_margin_button"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="@dimen/padding">
+            android:padding="@dimen/add_plant_padding">
 
             <TextView
                 android:layout_width="@dimen/width"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="@dimen/padding">
+            android:padding="@dimen/add_plant_padding">
 
             <TextView
                 android:layout_width="@dimen/width"
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="@dimen/padding">
+            android:padding="@dimen/add_plant_padding">
 
             <ImageView
                 android:id="@+id/image"
@@ -127,99 +127,55 @@
                 android:textSize="@dimen/text_size" />
         </LinearLayout>
 
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_notify"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="@dimen/elements_height"-->
-<!--            android:layout_marginLeft="@dimen/margin_left_right"-->
-<!--            android:layout_marginTop="@dimen/margin_button"-->
-<!--            android:layout_marginRight="@dimen/margin_left_right"-->
-<!--            android:background="@drawable/button_custom"-->
-<!--            android:fontFamily="@font/roboto_regular"-->
-<!--            android:text="Send notification"-->
-<!--            android:textColor="@android:color/white"-->
-<!--            android:textSize="@dimen/text_size" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_add"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="@dimen/elements_height"-->
-<!--            android:layout_marginLeft="@dimen/margin_left_right"-->
-<!--            android:layout_marginTop="@dimen/margin_button"-->
-<!--            android:layout_marginRight="@dimen/margin_left_right"-->
-<!--            android:background="@drawable/button_custom"-->
-<!--            android:fontFamily="@font/roboto_regular"-->
-<!--            android:text="@string/add_plant_title"-->
-<!--            android:textColor="@android:color/white"-->
-<!--            android:textSize="@dimen/text_size" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_time_picker"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Pick time" />-->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="100">
-
-<!--            <TimePicker-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="50"-->
-<!--                android:scaleX="0.6"-->
-<!--                android:scaleY="0.6"-->
-<!--                android:timePickerMode="spinner" />-->
-
-<!--            <DatePicker-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="50"-->
-<!--                android:scaleX="0.6"-->
-<!--                android:scaleY="0.6"-->
-<!--                android:calendarViewShown="false"-->
-<!--                android:datePickerMode="spinner" />-->
-
+            android:orientation="horizontal">
             <TimePicker
                 android:id="@+id/tp_timepicker"
-                android:background="@drawable/plant_list_item_background"
-                android:theme="@style/timeDatePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="-30dp"
+                android:layout_marginTop="-30dp"
+                android:layout_marginRight="-30dp"
+                android:layout_marginBottom="-30dp"
+                android:background="@drawable/plant_list_item_background"
                 android:scaleX="0.7"
                 android:scaleY="0.7"
-                android:layout_marginLeft="-30dp"
-                android:layout_marginRight="-30dp"
-                android:timePickerMode="spinner"
-                />
+                android:theme="@style/timeDatePicker"
+                android:timePickerMode="spinner" />
 
             <DatePicker
                 android:id="@+id/dp_datepicker"
-                android:background="@drawable/plant_list_item_background"
-                android:theme="@style/timeDatePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="-30dp"
+                android:layout_marginTop="-30dp"
+                android:layout_marginRight="-30dp"
+                android:layout_marginBottom="-30dp"
+                android:background="@drawable/plant_list_item_background"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
                 android:scaleX="0.7"
                 android:scaleY="0.7"
-                android:layout_marginLeft="-30dp"
-                android:layout_marginRight="-30dp"
-                android:layout_margin="-30dp"
-                android:datePickerMode="spinner"
-                android:calendarViewShown="false"
-                />
+                android:theme="@style/timeDatePicker" />
 
         </LinearLayout>
 
-        <!--        <DatePicker-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content" />-->
-        <!--        <TimePicker-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"/>-->
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/elements_height"
+            android:layout_marginLeft="@dimen/margin_left_right"
+            android:layout_marginTop="@dimen/add_plant_margin_button"
+            android:layout_marginRight="@dimen/margin_left_right"
+            android:background="@drawable/button_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/add_plant_title"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size" />
+
 
     </LinearLayout>
 </ScrollView>
