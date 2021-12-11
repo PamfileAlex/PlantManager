@@ -45,6 +45,8 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
         private Plant item;
         private final TextView title;
         private final TextView lastWatered;
+        private final TextView nextWater;
+        private final TextView time;
         private final ImageView image;
         private final OnItemListener<Plant> onItemListener;
 
@@ -52,6 +54,8 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
             super(binding.getRoot());
             this.title = binding.tvPlantTitle;
             this.lastWatered = binding.tvLastWatered;
+            this.nextWater=binding.tvNextWater;
+            this.time=binding.tvHour;
             this.image = binding.plantImage;
             this.onItemListener = onItemListener;
             binding.getRoot().setOnClickListener(this);
@@ -64,7 +68,9 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
         public void onBind(Plant plant) {
             item = plant;
             title.setText(plant.getName());
-            lastWatered.append(plant.getLastWatered().toString());
+            lastWatered.setText(plant.getLastWatered().toString());
+            nextWater.setText(plant.getNextWater().toString());
+            time.setText(plant.getTime().toString());
             image.setImageBitmap(plant.getImage());
         }
 

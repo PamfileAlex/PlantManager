@@ -43,7 +43,7 @@ public final class PlantDataAccess {
                         resultSet.getString("name"),
                         BitmapUtils.fromBytes(resultSet.getBytes("image")),
                         resultSet.getDate("last_watered").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                        resultSet.getDate("last_watered").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                        resultSet.getDate("next_water").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                         resultSet.getTime("time").toInstant().atZone(ZoneId.systemDefault()).toLocalTime());
                 plants.add(plant);
             }
