@@ -25,10 +25,13 @@ import com.example.plantmanager.databinding.FragmentAddPlantBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.CurrentUser;
-import com.example.plantmanager.utils.NotificationsUtils;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class AddPlantFragment extends Fragment {
@@ -65,19 +68,32 @@ public class AddPlantFragment extends Fragment {
 
         binding.btnAdd.setOnClickListener(view -> {
             PlantDataAccess.insertPlant(getPlant(), CurrentUser.INSTANCE.getUser().getId());
+
+//            LocalDate date = LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth());
+//            LocalTime time = LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute());
+//
+//            System.out.println(date);
+//            System.out.println(time);
         });
 
 //        binding.btnNotify.setOnClickListener(view -> {
 //            NotificationsUtils.showNotification(getActivity(), "Plant Manager Notification", "WATER THE PLANTS", 1);
 //        });
+
+        binding.dpDatepicker.setMinDate(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+
         return binding.getRoot();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private Plant getPlant() {
-        return new Plant(binding.etAddPlantName.getText().toString(),
+        return new Plant(((Category) binding.customSpinner.getSelectedItem()).getId(),
+                binding.etAddPlantName.getText().toString(),
                 ((BitmapDrawable) binding.image.getDrawable()).getBitmap(),
-                new Date(),
-                ((Category) binding.customSpinner.getSelectedItem()).getId());
+                LocalDate.now(),
+                LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth()),
+                LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute())
+                );
     }
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
