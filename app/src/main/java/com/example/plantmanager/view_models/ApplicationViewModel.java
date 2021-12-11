@@ -7,6 +7,7 @@ import com.example.plantmanager.database.PlantDataAccess;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.CurrentUser;
+import com.example.plantmanager.utils.PlantsRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -16,11 +17,13 @@ public class ApplicationViewModel extends ViewModel {
     private final ArrayList<Category> categories;
     private Category currentCategory;
 
+    private PlantsRecyclerAdapter plantsRecyclerAdapter;
+
     public ApplicationViewModel() {
         this.allPlants = PlantDataAccess.getPlants(CurrentUser.INSTANCE.getUser().getId());
-        plants = allPlants;
+        //plants = allPlants;
+        plants = new ArrayList<>();
         categories = CategoryDataAccess.getCategories();
-        //currentCategory = categories.get(0);
     }
 
     public ArrayList<Plant> getPlants() {
@@ -37,5 +40,31 @@ public class ApplicationViewModel extends ViewModel {
 
     public void setCurrentCategory(Category currentCategory) {
         this.currentCategory = currentCategory;
+        plants.clear();
+        if (currentCategory.getId() == 1) {
+            plants.addAll(allPlants);
+            notifyPlantsRecyclerAdapter();
+            return;
+        }
+        for (Plant plant : allPlants) {
+            if (currentCategory.getId() == plant.getIdCategory()) {
+                plants.add(plant);
+            }
+        }
+        notifyPlantsRecyclerAdapter();
+    }
+
+    private void notifyPlantsRecyclerAdapter() {
+        if (plantsRecyclerAdapter != null) {
+            plantsRecyclerAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public PlantsRecyclerAdapter getPlantsRecyclerAdapter() {
+        return plantsRecyclerAdapter;
+    }
+
+    public void setPlantsRecyclerAdapter(PlantsRecyclerAdapter plantsRecyclerAdapter) {
+        this.plantsRecyclerAdapter = plantsRecyclerAdapter;
     }
 }
