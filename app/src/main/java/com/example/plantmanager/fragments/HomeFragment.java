@@ -68,9 +68,8 @@ public class HomeFragment extends Fragment {
 
             PlantDataAccess.updatePlantDates(item);
 
-            LocalDateTime localDateTime = LocalDateTime.of(item.getNextWater(), item.getTime());
-            NotificationsUtils.scheduleNotification(getActivity(), "PlantManager", "It's time to water your " + item.getName() + "!", localDateTime);
-        }
+            NotificationsUtils.triggerNotification(getActivity(), item);
+           }
     };
 
     public static HomeFragment newInstance() {

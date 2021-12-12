@@ -68,13 +68,16 @@ public class AddPlantFragment extends Fragment {
         });
 
         binding.btnAdd.setOnClickListener(view -> {
-            PlantDataAccess.insertPlant(getPlant(), CurrentUser.INSTANCE.getUser().getId());
+            Plant plant = getPlant();
+            PlantDataAccess.insertPlant(plant, CurrentUser.INSTANCE.getUser().getId());
+            NotificationsUtils.triggerNotification(getActivity(), plant);
         });
 
         binding.dpDatepicker.setMinDate(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
-        
+
         binding.btnNotification.setOnClickListener(view -> {
-            NotificationsUtils.scheduleNotification(getActivity(), "PlantManager", "This is a notification", LocalDateTime.now());
+            Plant plant = new Plant(100, 1, "MyPlant", null, LocalDate.now(), LocalDate.now(), LocalTime.now().plusSeconds(5));
+            NotificationsUtils.triggerNotification(getActivity(), plant);
         });
 
         return binding.getRoot();

@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.example.plantmanager.R;
+import com.example.plantmanager.models.Plant;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -56,5 +57,11 @@ public class NotificationsUtils {
         NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "WaterReminderChannel", NotificationManager.IMPORTANCE_DEFAULT);
         NotificationManager notificationManager = activity.getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(notificationChannel);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void triggerNotification(Activity activity, Plant plant){
+        LocalDateTime localDateTime = LocalDateTime.of(plant.getNextWater(), plant.getTime());
+        NotificationsUtils.scheduleNotification(activity, "PlantManager", "It's time to water your " + plant.getName() + "!", localDateTime);
     }
 }
