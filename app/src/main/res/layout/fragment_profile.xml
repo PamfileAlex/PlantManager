@@ -13,8 +13,8 @@
         android:id="@+id/exit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
         android:contentDescription="@string/exit"
         android:src="@drawable/ic_exit_to_app" />
 
@@ -23,8 +23,6 @@
         android:id="@+id/tv_profile_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_top_bottom"
-        android:layout_marginBottom="@dimen/register_margin_bottom"
         android:text="@string/profile_title"
         android:textColor="@color/black"
         android:textSize="@dimen/title_size" />
@@ -34,14 +32,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
+        android:weightSum="1"
         android:padding="@dimen/padding">
 
         <TextView
             android:fontFamily="@font/roboto_regular"
             android:layout_width="@dimen/width"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:gravity="center"
+            android:layout_weight="0.25"
             android:text="@string/username"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
@@ -50,7 +48,7 @@
             android:id="@+id/et_profile_username"
             android:layout_width="@dimen/width"
             android:layout_height="@dimen/elements_height"
-            android:layout_weight="0.5"
+            android:layout_weight="0.75"
             android:background="@drawable/edit_text_custom"
             android:cursorVisible="false"
             android:focusable="false"
@@ -65,13 +63,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
+        android:weightSum="1"
         android:padding="@dimen/padding">
 
         <TextView
             android:layout_width="@dimen/width"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:gravity="center"
+            android:layout_weight="0.25"
             android:text="@string/last_name"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size"
@@ -81,7 +79,7 @@
             android:id="@+id/et_profile_last_name"
             android:layout_width="@dimen/width"
             android:layout_height="@dimen/elements_height"
-            android:layout_weight="0.5"
+            android:layout_weight="0.75"
             android:background="@drawable/edit_text_custom"
             android:gravity="center"
             android:textColor="@color/black"
@@ -94,13 +92,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
+        android:weightSum="1"
         android:padding="@dimen/padding">
 
         <TextView
             android:layout_width="@dimen/width"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:gravity="center"
+            android:layout_weight="0.25"
             android:text="@string/first_name"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size"
@@ -110,7 +108,7 @@
             android:id="@+id/et_profile_first_name"
             android:layout_width="@dimen/width"
             android:layout_height="@dimen/elements_height"
-            android:layout_weight="0.5"
+            android:layout_weight="0.75"
             android:background="@drawable/edit_text_custom"
             android:gravity="center"
             android:textColor="@color/black"
@@ -124,13 +122,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
+        android:weightSum="1"
         android:padding="@dimen/padding">
 
         <TextView
             android:layout_width="@dimen/width"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:gravity="center"
+            android:layout_weight="0.25"
             android:text="@string/email"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size"
@@ -140,7 +138,7 @@
             android:id="@+id/et_profile_email"
             android:layout_width="@dimen/width"
             android:layout_height="@dimen/elements_height"
-            android:layout_weight="0.5"
+            android:layout_weight="0.75"
             android:background="@drawable/edit_text_custom"
             android:gravity="center"
             android:textColor="@color/black"

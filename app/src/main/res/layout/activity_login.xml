@@ -30,6 +30,8 @@
         android:inputType="textEmailAddress"
         android:padding="@dimen/padding"
         android:textSize="@dimen/text_size"
+        android:drawableStart="@drawable/ic_person"
+        android:drawablePadding="@dimen/padding"
         android:fontFamily="@font/roboto_regular"/>
 
     <EditText
@@ -42,8 +44,10 @@
         android:background="@drawable/edit_text_custom"
         android:hint="@string/password"
         android:inputType="textPassword"
+        android:drawableStart="@drawable/ic_lock"
         android:padding="@dimen/padding"
         android:textSize="@dimen/text_size"
+        android:drawablePadding="@dimen/padding"
         android:fontFamily="@font/roboto_regular"/>
 
     <Button
