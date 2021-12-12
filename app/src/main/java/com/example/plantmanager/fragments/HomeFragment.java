@@ -33,6 +33,13 @@ public class HomeFragment extends Fragment {
         }
     };
 
+    private final OnItemListener<Plant> onButtonListener = new OnItemListener<Plant>() {
+        @Override
+        public void onItemClick(Plant item, int position) {
+            System.out.println("WATER PLANT");
+        }
+    };
+
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
@@ -41,7 +48,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        binding.plantList.setAdapter(new PlantsRecyclerAdapter(mViewModel.getPlants(), onItemListener));
+        binding.plantList.setAdapter(new PlantsRecyclerAdapter(mViewModel.getPlants(), onItemListener, onButtonListener));
         Spinner spinner = binding.customSpinner;
         SpinnerHelper.populateSpinnerWithCategories(spinner, getContext(), mViewModel.getCategories());
 
