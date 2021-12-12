@@ -1,5 +1,8 @@
 package com.example.plantmanager.view_models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModel;
 
 import com.example.plantmanager.database.CategoryDataAccess;
@@ -16,6 +19,7 @@ public class ApplicationViewModel extends ViewModel {
     private final ArrayList<Category> categories;
     private Category currentCategory;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public ApplicationViewModel() {
         this.allPlants = PlantDataAccess.getPlants(CurrentUser.INSTANCE.getUser().getId());
         plants = allPlants;

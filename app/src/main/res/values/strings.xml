@@ -29,7 +29,7 @@
     <string name="add_plant_title">Add plant</string>
     <string name="plant_name">Plant name</string>
     <string name="plant_image">Add image</string>
-    <string name="plant_category">Plant category</string>
+    <string name="plant_category">Category</string>
 
     <!--Plant list item-->
     <string name="plant_title">Plant title</string>
