@@ -2,25 +2,30 @@ package com.example.plantmanager.models;
 
 import android.graphics.Bitmap;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Plant {
     private int id;
+    private int idCategory;
     private String name;
     private Bitmap image;
-    private Date lastWatered;
-    private int idCategory;
+    private LocalDate lastWatered;
+    private LocalDate nextWater;
+    private LocalTime time;
 
-    public Plant(String name, Bitmap image, Date lastWatered, int idCategory) {
+    public Plant(int id, int idCategory, String name, Bitmap image, LocalDate lastWatered, LocalDate nextWater, LocalTime time) {
+        this(idCategory, name, image, lastWatered, nextWater, time);
+        this.id = id;
+    }
+
+    public Plant(int idCategory, String name, Bitmap image, LocalDate lastWatered, LocalDate nextWater, LocalTime time) {
+        this.idCategory = idCategory;
         this.name = name;
         this.image = image;
         this.lastWatered = lastWatered;
-        this.idCategory = idCategory;
-    }
-
-    public Plant(int id, String name, Bitmap image, Date lastWatered, int idCategory) {
-        this(name, image, lastWatered, idCategory);
-        this.id = id;
+        this.nextWater = nextWater;
+        this.time = time;
     }
 
     public int getId() {
@@ -29,6 +34,14 @@ public class Plant {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 
     public String getName() {
@@ -47,19 +60,27 @@ public class Plant {
         this.image = image;
     }
 
-    public Date getLastWatered() {
+    public LocalDate getLastWatered() {
         return lastWatered;
     }
 
-    public void setLastWatered(Date lastWatered) {
+    public void setLastWatered(LocalDate lastWatered) {
         this.lastWatered = lastWatered;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public LocalDate getNextWater() {
+        return nextWater;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setNextWater(LocalDate nextWater) {
+        this.nextWater = nextWater;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 }

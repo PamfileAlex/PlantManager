@@ -5,4 +5,8 @@
 
     <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
     </style>
+
+    <style name="timeDatePicker">
+        <item name="android:textSize">25sp</item>
+    </style>
 </resources>

@@ -4,30 +4,36 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.plantmanager.database.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentAddPlantBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.CurrentUser;
+import com.example.plantmanager.utils.NotificationsUtils;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class AddPlantFragment extends Fragment {
@@ -49,6 +55,7 @@ public class AddPlantFragment extends Fragment {
         applicationViewModel = new ViewModelProvider(getActivity()).get(ApplicationViewModel.class);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,16 +69,34 @@ public class AddPlantFragment extends Fragment {
         });
 
         binding.btnAdd.setOnClickListener(view -> {
-            PlantDataAccess.insertPlant(getPlant(), CurrentUser.INSTANCE.getUser().getId());
+            if (!areFieldsValid())
+                return;
+            Plant plant = getPlant();
+            PlantDataAccess.insertPlant(plant, CurrentUser.INSTANCE.getUser().getId());
+            NotificationsUtils.triggerNotification(getActivity(), plant);
+
+            Toast.makeText(getActivity(), "Plant was added successfully!", Toast.LENGTH_SHORT).show();
         });
+
+        binding.dpDatepicker.setMinDate(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+
+        binding.btnNotification.setOnClickListener(view -> {
+            Plant plant = new Plant(100, 1, "MyPlant", null, LocalDate.now(), LocalDate.now(), LocalTime.now().plusSeconds(5));
+            NotificationsUtils.triggerNotification(getActivity(), plant);
+        });
+
         return binding.getRoot();
     }
 
-    private Plant getPlant(){
-        return new Plant(binding.etAddPlantName.getText().toString(),
-                ((BitmapDrawable)binding.image.getDrawable()).getBitmap(),
-                new Date(),
-                ((Category)binding.categoryDropdown.getSelectedItem()).getId());
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private Plant getPlant() {
+        return new Plant(((Category) binding.categoryDropdown.getSelectedItem()).getId(),
+                binding.etAddPlantName.getText().toString(),
+                ((BitmapDrawable) binding.image.getDrawable()).getBitmap(),
+                LocalDate.now(),
+                LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth()),
+                LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute())
+        );
     }
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
@@ -79,7 +104,7 @@ public class AddPlantFragment extends Fragment {
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent intent = result.getData();
-                    switch (imageOption){
+                    switch (imageOption) {
                         case CAMERA:
                             Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
                             binding.image.setImageBitmap(bitmap);
@@ -95,27 +120,35 @@ public class AddPlantFragment extends Fragment {
             });
 
     private void selectImage() {
-        final CharSequence[] options = { "Take Photo", "Choose from Gallery", "Cancel" };
+        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Add Photo!");
         builder.setItems(options, (dialog, item) -> {
-            if (options[item].equals("Take Photo"))
-            {
+            if (options[item].equals("Take Photo")) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 imageOption = ImageOptions.CAMERA;
                 activityResultLauncher.launch(intent);
-            }
-            else if (options[item].equals("Choose from Gallery"))
-            {
+            } else if (options[item].equals("Choose from Gallery")) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 imageOption = ImageOptions.GALLERY;
                 activityResultLauncher.launch(intent);
-            }
-            else if (options[item].equals("Cancel")) {
+            } else if (options[item].equals("Cancel")) {
                 imageOption = ImageOptions.NONE;
                 dialog.dismiss();
             }
         });
         builder.show();
+    }
+
+    private boolean areFieldsValid() {
+        if (binding.etAddPlantName.getText().toString().isEmpty()) {
+            Toast.makeText(getActivity(), "Name can not be empty!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (((Category) binding.categoryDropdown.getSelectedItem()).getId() == 1) {
+            Toast.makeText(getActivity(), "Please select a category!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

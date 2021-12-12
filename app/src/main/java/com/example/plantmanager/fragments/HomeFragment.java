@@ -1,5 +1,9 @@
 package com.example.plantmanager.fragments;
 
+import androidx.annotation.RequiresApi;
+import androidx.lifecycle.ViewModelProvider;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +16,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import com.example.plantmanager.database.PlantDataAccess;
 
 import com.example.plantmanager.databinding.FragmentHomeBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
+import com.example.plantmanager.utils.NotificationsUtils;
 import com.example.plantmanager.utils.OnItemListener;
 import com.example.plantmanager.utils.PlantsRecyclerAdapter;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 
 public class HomeFragment extends Fragment {
 
@@ -33,6 +45,35 @@ public class HomeFragment extends Fragment {
         }
     };
 
+    private final OnItemListener<Plant> onButtonListener = new OnItemListener<Plant>() {
+        @RequiresApi(api = Build.VERSION_CODES.O)
+        @Override
+        public void onItemClick(Plant item, int position) {
+            LocalDate lastWatered = item.getLastWatered();
+            LocalDate nextWater = item.getNextWater();
+
+            long interval = ChronoUnit.DAYS.between(lastWatered, nextWater);
+
+            if (nextWater.isAfter(LocalDate.now())) {
+                Toast.makeText(getActivity(), "It's not the time to water this plant!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (nextWater.plusDays(interval).isAfter(LocalDate.now())) {
+                item.setLastWatered(nextWater);
+                item.setNextWater(nextWater.plusDays(interval));
+            } else {
+                long numberOfIntervals = ChronoUnit.DAYS.between(lastWatered, LocalDate.now()) / interval;
+                item.setLastWatered(lastWatered.plusDays(interval * numberOfIntervals));
+                item.setNextWater(nextWater.plusDays(interval * numberOfIntervals));
+            }
+
+            PlantDataAccess.updatePlantDates(item);
+
+            NotificationsUtils.triggerNotification(getActivity(), item);
+           }
+    };
+
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
@@ -42,7 +83,7 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        PlantsRecyclerAdapter plantsRecyclerAdapter = new PlantsRecyclerAdapter(applicationViewModel.getPlants(), onItemListener);
+        PlantsRecyclerAdapter plantsRecyclerAdapter = new PlantsRecyclerAdapter(applicationViewModel.getPlants(), onItemListener, onButtonListener);
         applicationViewModel.setPlantsRecyclerAdapter(plantsRecyclerAdapter);
         binding.plantList.setAdapter(plantsRecyclerAdapter);
 
