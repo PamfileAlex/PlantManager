@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.plantmanager.database.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentAddPlantBinding;
@@ -68,9 +69,13 @@ public class AddPlantFragment extends Fragment {
         });
 
         binding.btnAdd.setOnClickListener(view -> {
+            if (!areFieldsValid())
+                return;
             Plant plant = getPlant();
             PlantDataAccess.insertPlant(plant, CurrentUser.INSTANCE.getUser().getId());
             NotificationsUtils.triggerNotification(getActivity(), plant);
+
+            Toast.makeText(getActivity(), "Plant was added successfully!", Toast.LENGTH_SHORT).show();
         });
 
         binding.dpDatepicker.setMinDate(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
@@ -133,5 +138,17 @@ public class AddPlantFragment extends Fragment {
             }
         });
         builder.show();
+    }
+
+    private boolean areFieldsValid() {
+        if (binding.etAddPlantName.getText().toString().isEmpty()) {
+            Toast.makeText(getActivity(), "Name can not be empty!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (((Category) binding.customSpinner.getSelectedItem()).getId() == 1) {
+            Toast.makeText(getActivity(), "Please select a category!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

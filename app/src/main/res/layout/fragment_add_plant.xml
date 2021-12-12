@@ -31,7 +31,7 @@
             android:layout_height="@dimen/elements_height"
             android:background="@drawable/edit_text_custom"
             android:fontFamily="@font/roboto_regular"
-            android:gravity="center"
+            android:padding="@dimen/padding"
             android:hint="@string/plant_name"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
