@@ -29,6 +29,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 
 public class HomeFragment extends Fragment {
 
@@ -46,23 +47,28 @@ public class HomeFragment extends Fragment {
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onItemClick(Plant item, int position) {
-            System.out.println("Last water before: " + item.getLastWatered());
-            System.out.println("Next water before: " + item.getNextWater());
-
             LocalDate lastWatered = item.getLastWatered();
             LocalDate nextWater = item.getNextWater();
 
-            Period period = Period.between(lastWatered, nextWater);
-            item.setLastWatered(nextWater);
-            item.setNextWater(nextWater.plusYears(period.getYears()).plusMonths(period.getMonths()).plusDays(period.getDays()));
+            long interval = ChronoUnit.DAYS.between(lastWatered, nextWater);
 
-            System.out.println("Last water after: " + item.getLastWatered());
-            System.out.println("Next water after: " + item.getNextWater());
+            if (nextWater.isAfter(LocalDate.now())) {
+                Toast.makeText(getActivity(), "It's not the time to water this plant!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (nextWater.plusDays(interval).isAfter(LocalDate.now())) {
+                item.setLastWatered(nextWater);
+                item.setNextWater(nextWater.plusDays(interval));
+            } else {
+                long numberOfIntervals = ChronoUnit.DAYS.between(lastWatered, LocalDate.now()) / interval;
+                item.setLastWatered(lastWatered.plusDays(interval * numberOfIntervals));
+                item.setNextWater(nextWater.plusDays(interval * numberOfIntervals));
+            }
 
             PlantDataAccess.updatePlantDates(item);
 
             LocalDateTime localDateTime = LocalDateTime.of(item.getNextWater(), item.getTime());
-
             NotificationsUtils.scheduleNotification(getActivity(), "PlantManager", "It's time to water your " + item.getName() + "!", localDateTime);
         }
     };
