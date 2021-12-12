@@ -66,7 +66,10 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
             binding.getRoot().setOnClickListener(this);
 
             this.onButtonPressed = onButtonPressed;
-            binding.btnWater.setOnClickListener(v -> onButtonPressed.onItemClick(item, getAdapterPosition()));
+            binding.btnWater.setOnClickListener(v -> {
+                onButtonPressed.onItemClick(item, getAdapterPosition());
+                onBind(item);
+            });
         }
 
         public void onBind(Plant plant) {
