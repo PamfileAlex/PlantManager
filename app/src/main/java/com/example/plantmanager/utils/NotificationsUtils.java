@@ -17,6 +17,8 @@ import androidx.core.app.NotificationCompat;
 import com.example.plantmanager.R;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 
 public class NotificationsUtils {
     public static final String NOTIFICATION_CHANNEL_ID = "WaterReminderChannel";
@@ -34,8 +36,9 @@ public class NotificationsUtils {
 
         AlarmManager alarmManager = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
-        long delay = System.currentTimeMillis() + 5000;
-        alarmManager.set(AlarmManager.RTC_WAKEUP, delay, pendingIntent);
+
+        long time = localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
     }
 
     private static Notification getNotification(Activity activity, String title, String message) {
