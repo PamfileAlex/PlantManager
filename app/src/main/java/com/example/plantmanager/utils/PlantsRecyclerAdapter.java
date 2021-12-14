@@ -78,7 +78,9 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantsRecyclerAd
             lastWatered.setText(plant.getLastWatered().toString());
             nextWater.setText(plant.getNextWater().toString());
             time.setText(plant.getTime().toString());
-            image.setImageBitmap(plant.getImage());
+            if (plant.getImage() != null) {
+                image.setImageBitmap(plant.getImage());
+            }
         }
 
         @Override
