@@ -40,7 +40,8 @@ public final class PlantDataAccess {
                         BitmapUtils.fromBytes(resultSet.getBytes("image")),
                         LocalDateConverter.fromSqlDate(resultSet.getDate("last_watered")),
                         LocalDateConverter.fromSqlDate(resultSet.getDate("next_water")),
-                        resultSet.getTime("time").toInstant().atZone(ZoneId.systemDefault()).toLocalTime());
+                        resultSet.getTime("time").toInstant().atZone(ZoneId.systemDefault()).toLocalTime(),
+                        resultSet.getBoolean("allow_notifications"));
                 plants.add(plant);
             }
             databaseConnection.close();
@@ -64,7 +65,7 @@ public final class PlantDataAccess {
             statement.setDate(5, LocalDateConverter.toSqlDate(plant.getLastWatered()));
             statement.setDate(6, LocalDateConverter.toSqlDate(plant.getNextWater()));
             statement.setTime(7, new java.sql.Time(plant.getTime().getHour(), plant.getTime().getMinute(), 0));
-            statement.setBoolean(8, true);
+            statement.setBoolean(8, plant.getAllowNotifications());
 
             statement.execute();
             databaseConnection.close();

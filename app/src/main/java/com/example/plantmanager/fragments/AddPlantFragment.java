@@ -83,7 +83,7 @@ public class AddPlantFragment extends Fragment {
         binding.dpDatepicker.setMinDate(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
         binding.btnNotification.setOnClickListener(view -> {
-            Plant plant = new Plant(100, 1, "MyPlant", null, LocalDate.now(), LocalDate.now(), LocalTime.now().plusSeconds(5));
+            Plant plant = new Plant(100, 1, "MyPlant", null, LocalDate.now(), LocalDate.now(), LocalTime.now().plusSeconds(5), binding.checkboxNotifications.isChecked());
             NotificationsUtils.triggerNotification(getActivity(), plant);
         });
 
@@ -97,7 +97,8 @@ public class AddPlantFragment extends Fragment {
                 ((BitmapDrawable) binding.image.getDrawable()).getBitmap(),
                 LocalDate.now(),
                 LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth()),
-                LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute())
+                LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute()),
+                binding.checkboxNotifications.isChecked()
         );
     }
 

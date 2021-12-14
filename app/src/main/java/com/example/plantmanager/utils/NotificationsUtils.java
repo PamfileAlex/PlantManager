@@ -60,7 +60,9 @@ public class NotificationsUtils {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void triggerNotification(Activity activity, Plant plant){
+    public static void triggerNotification(Activity activity, Plant plant) {
+        if (!plant.getAllowNotifications())
+            return;
         LocalDateTime localDateTime = LocalDateTime.of(plant.getNextWater(), plant.getTime());
         NotificationsUtils.scheduleNotification(activity, "PlantManager", "It's time to water your " + plant.getName() + "!", localDateTime);
     }

@@ -13,19 +13,21 @@ public class Plant {
     private LocalDate lastWatered;
     private LocalDate nextWater;
     private LocalTime time;
+    private boolean allowNotifications;
 
-    public Plant(int id, int idCategory, String name, Bitmap image, LocalDate lastWatered, LocalDate nextWater, LocalTime time) {
-        this(idCategory, name, image, lastWatered, nextWater, time);
+    public Plant(int id, int idCategory, String name, Bitmap image, LocalDate lastWatered, LocalDate nextWater, LocalTime time, boolean sendNotifications) {
+        this(idCategory, name, image, lastWatered, nextWater, time, sendNotifications);
         this.id = id;
     }
 
-    public Plant(int idCategory, String name, Bitmap image, LocalDate lastWatered, LocalDate nextWater, LocalTime time) {
+    public Plant(int idCategory, String name, Bitmap image, LocalDate lastWatered, LocalDate nextWater, LocalTime time, boolean sendNotifications) {
         this.idCategory = idCategory;
         this.name = name;
         this.image = image;
         this.lastWatered = lastWatered;
         this.nextWater = nextWater;
         this.time = time;
+        this.allowNotifications = sendNotifications;
     }
 
     public int getId() {
@@ -82,5 +84,13 @@ public class Plant {
 
     public void setTime(LocalTime time) {
         this.time = time;
+    }
+
+    public boolean getAllowNotifications() {
+        return allowNotifications;
+    }
+
+    public void setAllowNotifications(boolean allowNotifications) {
+        this.allowNotifications = allowNotifications;
     }
 }
