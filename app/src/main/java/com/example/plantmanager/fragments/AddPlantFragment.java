@@ -73,6 +73,8 @@ public class AddPlantFragment extends Fragment {
                 return;
             Plant plant = getPlant();
             PlantDataAccess.insertPlant(plant, CurrentUser.INSTANCE.getUser().getId());
+            applicationViewModel.addPlant(plant);
+
             NotificationsUtils.triggerNotification(getActivity(), plant);
 
             Toast.makeText(getActivity(), "Plant was added successfully!", Toast.LENGTH_SHORT).show();

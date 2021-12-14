@@ -36,13 +36,13 @@ public class ApplicationActivity extends AppCompatActivity implements Navigation
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, homeFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new HomeFragment()).commit();
                 break;
             case R.id.add_plant:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, addPlantFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new AddPlantFragment()).commit();
                 break;
             case R.id.profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, profileFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, new ProfileFragment()).commit();
                 break;
             default:
                 break;

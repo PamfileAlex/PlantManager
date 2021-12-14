@@ -22,6 +22,7 @@ public class ApplicationViewModel extends ViewModel {
 
     private PlantsRecyclerAdapter plantsRecyclerAdapter;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public ApplicationViewModel() {
         this.allPlants = PlantDataAccess.getPlants(CurrentUser.INSTANCE.getUser().getId());
         //plants = allPlants;
@@ -69,5 +70,10 @@ public class ApplicationViewModel extends ViewModel {
 
     public void setPlantsRecyclerAdapter(PlantsRecyclerAdapter plantsRecyclerAdapter) {
         this.plantsRecyclerAdapter = plantsRecyclerAdapter;
+    }
+
+    public void addPlant(Plant plant){
+        allPlants.add(plant);
+        notifyPlantsRecyclerAdapter();
     }
 }
