@@ -1,5 +1,6 @@
 package com.example.plantmanager.fragments;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -11,17 +12,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.plantmanager.database.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentPlantDetailsBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.ImageManager;
+import com.example.plantmanager.utils.PlantInfoCheck;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
 import com.example.plantmanager.view_models.PlantDetailsViewModel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 
@@ -51,6 +56,10 @@ public class PlantDetailsFragment extends DialogFragment {
 
         binding.btnChangeImage.setOnClickListener(view -> {
             imageManager.selectImage();
+        });
+
+        binding.btnUpdate.setOnClickListener(view -> {
+            updatePlant();
         });
 
         return binding.getRoot();
@@ -96,5 +105,45 @@ public class PlantDetailsFragment extends DialogFragment {
             return LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
         }
         return LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    private boolean areFieldsValid() {
+        return PlantInfoCheck.plantNameCheck(getActivity(), binding.etPlantName) &&
+                PlantInfoCheck.plantCategoryCheck(getActivity(), binding.categoryDropdown);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void updatePlant() {
+        if (!areFieldsValid())
+            return;
+
+        if (!checkTime())
+            return;
+
+        Plant selectedPlant = plantDetailsViewModel.getSelectedPlant();
+
+        selectedPlant.setName(binding.etPlantName.getText().toString());
+        selectedPlant.setImage(((BitmapDrawable) binding.image.getDrawable()).getBitmap());
+        selectedPlant.setNextWater(LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth()));
+        selectedPlant.setTime( LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute()));
+        selectedPlant.setAllowNotifications(binding.checkboxNotifications.isChecked());
+
+        PlantDataAccess.updatePlant(selectedPlant);
+        applicationViewModel.notifyPlantsRecyclerAdapter();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private boolean checkTime() {
+        LocalDate date = LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth());
+
+        if (!date.isEqual(LocalDate.now()))
+            return true;
+
+        LocalTime time = LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute());
+        if (time.isAfter(LocalTime.now()))
+            return true;
+
+        Toast.makeText(getActivity(), "Time before now!", Toast.LENGTH_SHORT).show();
+        return false;
     }
 }

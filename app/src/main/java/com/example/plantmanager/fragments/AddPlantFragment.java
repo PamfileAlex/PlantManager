@@ -28,6 +28,7 @@ import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.CurrentUser;
 import com.example.plantmanager.utils.ImageManager;
 import com.example.plantmanager.utils.NotificationsUtils;
+import com.example.plantmanager.utils.PlantInfoCheck;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
 
@@ -100,14 +101,7 @@ public class AddPlantFragment extends Fragment {
     }
 
     private boolean areFieldsValid() {
-        if (binding.etAddPlantName.getText().toString().isEmpty()) {
-            Toast.makeText(getActivity(), "Name can not be empty!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (((Category) binding.categoryDropdown.getSelectedItem()).getId() == 1) {
-            Toast.makeText(getActivity(), "Please select a category!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
+        return PlantInfoCheck.plantNameCheck(getActivity(), binding.etAddPlantName) &&
+                PlantInfoCheck.plantCategoryCheck(getActivity(), binding.categoryDropdown);
     }
 }

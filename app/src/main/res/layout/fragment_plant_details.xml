@@ -149,12 +149,10 @@
                 android:theme="@style/popupTimeDatePicker"
                 android:timePickerMode="spinner" />
 
-
-
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="@dimen/elements_height"
             android:layout_marginTop="@dimen/add_plant_margin_button"

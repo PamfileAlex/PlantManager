@@ -58,7 +58,7 @@ public class ApplicationViewModel extends ViewModel {
         notifyPlantsRecyclerAdapter();
     }
 
-    private void notifyPlantsRecyclerAdapter() {
+    public void notifyPlantsRecyclerAdapter() {
         if (plantsRecyclerAdapter != null) {
             plantsRecyclerAdapter.notifyDataSetChanged();
         }
