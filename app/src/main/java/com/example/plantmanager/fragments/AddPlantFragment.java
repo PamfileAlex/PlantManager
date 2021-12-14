@@ -26,7 +26,9 @@ import com.example.plantmanager.databinding.FragmentAddPlantBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.CurrentUser;
+import com.example.plantmanager.utils.ImageManager;
 import com.example.plantmanager.utils.NotificationsUtils;
+import com.example.plantmanager.utils.PlantInfoCheck;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
 
@@ -41,13 +43,7 @@ public class AddPlantFragment extends Fragment {
     FragmentAddPlantBinding binding;
     ApplicationViewModel applicationViewModel;
 
-    private enum ImageOptions {
-        CAMERA,
-        GALLERY,
-        NONE
-    }
-
-    private ImageOptions imageOption;
+    ImageManager imageManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,11 +57,13 @@ public class AddPlantFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAddPlantBinding.inflate(inflater, container, false);
 
+        imageManager = new ImageManager(this, binding.image);
+
         Spinner categoryDropdown = binding.categoryDropdown;
         SpinnerHelper.populateSpinnerWithCategories(categoryDropdown, getContext(), applicationViewModel.getCategories());
 
         binding.btnAddImage.setOnClickListener(view -> {
-            selectImage();
+            imageManager.selectImage();
         });
 
         binding.btnAdd.setOnClickListener(view -> {
@@ -102,56 +100,8 @@ public class AddPlantFragment extends Fragment {
         );
     }
 
-    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent intent = result.getData();
-                    switch (imageOption) {
-                        case CAMERA:
-                            Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
-                            binding.image.setImageBitmap(bitmap);
-                            break;
-                        case GALLERY:
-                            binding.image.setImageURI(intent.getData());
-                            break;
-                        case NONE:
-                            break;
-                    }
-                    imageOption = ImageOptions.NONE;
-                }
-            });
-
-    private void selectImage() {
-        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Add Photo!");
-        builder.setItems(options, (dialog, item) -> {
-            if (options[item].equals("Take Photo")) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                imageOption = ImageOptions.CAMERA;
-                activityResultLauncher.launch(intent);
-            } else if (options[item].equals("Choose from Gallery")) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                imageOption = ImageOptions.GALLERY;
-                activityResultLauncher.launch(intent);
-            } else if (options[item].equals("Cancel")) {
-                imageOption = ImageOptions.NONE;
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
-
     private boolean areFieldsValid() {
-        if (binding.etAddPlantName.getText().toString().isEmpty()) {
-            Toast.makeText(getActivity(), "Name can not be empty!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (((Category) binding.categoryDropdown.getSelectedItem()).getId() == 1) {
-            Toast.makeText(getActivity(), "Please select a category!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
+        return PlantInfoCheck.plantNameCheck(getActivity(), binding.etAddPlantName) &&
+                PlantInfoCheck.plantCategoryCheck(getActivity(), binding.categoryDropdown);
     }
 }

@@ -92,4 +92,44 @@ public final class PlantDataAccess {
             e.printStackTrace();
         }
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void updatePlant(Plant plant) {
+        try {
+            Connection databaseConnection = DataAccessHelper.getConnection();
+
+            CallableStatement statement = databaseConnection.prepareCall("{call spUpdatePlant(?, ?, ?, ?, ?, ?, ?, ?)}");
+
+            statement.setInt(1, plant.getId());
+            statement.setInt(2, plant.getIdCategory());
+            statement.setString(3, plant.getName());
+            statement.setBytes(4, BitmapUtils.fromBitmap(plant.getImage()));
+            statement.setDate(5, LocalDateConverter.toSqlDate(plant.getLastWatered()));
+            statement.setDate(6, LocalDateConverter.toSqlDate(plant.getNextWater()));
+            statement.setTime(7, new java.sql.Time(plant.getTime().getHour(), plant.getTime().getMinute(), 0));
+            statement.setBoolean(8, plant.getAllowNotifications());
+
+            statement.execute();
+
+            databaseConnection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deletePlant(Plant plant) {
+        try {
+            Connection databaseConnection = DataAccessHelper.getConnection();
+
+            CallableStatement statement = databaseConnection.prepareCall("{call spDeletePlant(?)}");
+
+            statement.setInt(1, plant.getId());
+
+            statement.execute();
+
+            databaseConnection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

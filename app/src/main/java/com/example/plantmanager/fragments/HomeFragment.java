@@ -1,6 +1,7 @@
 package com.example.plantmanager.fragments;
 
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Build;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.plantmanager.database.PlantDataAccess;
 
 import com.example.plantmanager.databinding.FragmentHomeBinding;
@@ -26,6 +28,7 @@ import com.example.plantmanager.utils.OnItemListener;
 import com.example.plantmanager.utils.PlantsRecyclerAdapter;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
+import com.example.plantmanager.view_models.PlantDetailsViewModel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -37,11 +40,15 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private ApplicationViewModel applicationViewModel;
+    private PlantDetailsViewModel plantDetailsViewModel;
 
     private final OnItemListener<Plant> onItemListener = new OnItemListener<Plant>() {
         @Override
         public void onItemClick(Plant item, int position) {
-            Toast.makeText(getActivity(), "clicked " + position, Toast.LENGTH_SHORT).show();
+            plantDetailsViewModel.setSelectedPlant(item);
+
+            DialogFragment plantDetailsFragment = new PlantDetailsFragment();
+            plantDetailsFragment.show(getActivity().getSupportFragmentManager(), "plantDetails");
         }
     };
 
@@ -71,7 +78,7 @@ public class HomeFragment extends Fragment {
             PlantDataAccess.updatePlantDates(item);
 
             NotificationsUtils.triggerNotification(getActivity(), item);
-           }
+        }
     };
 
     public static HomeFragment newInstance() {
@@ -114,6 +121,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         applicationViewModel = new ViewModelProvider(getActivity()).get(ApplicationViewModel.class);
+        plantDetailsViewModel = new ViewModelProvider(getActivity()).get(PlantDetailsViewModel.class);
         // TODO: Use the ViewModel
     }
 }
