@@ -19,6 +19,7 @@ import com.example.plantmanager.databinding.FragmentPlantDetailsBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.ImageManager;
+import com.example.plantmanager.utils.NotificationsUtils;
 import com.example.plantmanager.utils.PlantInfoCheck;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
@@ -121,15 +122,23 @@ public class PlantDetailsFragment extends DialogFragment {
             return;
 
         Plant selectedPlant = plantDetailsViewModel.getSelectedPlant();
+        LocalDate previousNextWater = selectedPlant.getNextWater();
+        LocalTime previousTime = selectedPlant.getTime();
 
         selectedPlant.setName(binding.etPlantName.getText().toString());
         selectedPlant.setImage(((BitmapDrawable) binding.image.getDrawable()).getBitmap());
         selectedPlant.setNextWater(LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth()));
-        selectedPlant.setTime( LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute()));
+        selectedPlant.setTime(LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute()));
         selectedPlant.setAllowNotifications(binding.checkboxNotifications.isChecked());
 
         PlantDataAccess.updatePlant(selectedPlant);
         applicationViewModel.notifyPlantsRecyclerAdapter();
+
+        if (!previousNextWater.isEqual(selectedPlant.getNextWater()) ||
+                previousTime.compareTo(selectedPlant.getTime()) != 0) {
+            NotificationsUtils.triggerNotification(getActivity(), selectedPlant);
+            System.out.println("Notification triggered");
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
