@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/background"
-    tools:context=".fragments.AddPlantFragment">
+    tools:context=".fragments.PlantDetailsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,18 +14,8 @@
         android:orientation="vertical"
         android:padding="@dimen/padding">
 
-        <TextView
-            android:id="@+id/tv_add_plant_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/add_plant_margin_button"
-            android:fontFamily="@font/cookie_regular"
-            android:text="@string/add_plant_title"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_size" />
-
         <EditText
-            android:id="@+id/et_add_plant_name"
+            android:id="@+id/et_plant_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/elements_height"
             android:background="@drawable/edit_text_custom"
@@ -51,7 +40,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/plant_category"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/popup_text_size" />
 
             <RelativeLayout
                 android:layout_width="180dp"
@@ -84,20 +73,21 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
+            android:weightSum="1"
             android:padding="@dimen/add_plant_padding">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="@dimen/add_plant_layout_width"
                 android:layout_height="@dimen/add_plant_layout_height"
-                android:layout_weight="0.5"
+                android:layout_weight="0.4"
                 android:adjustViewBounds="true"
                 android:src="@drawable/plant" />
 
             <LinearLayout
                 android:layout_width="@dimen/width"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.6"
                 android:orientation="vertical">
 
                 <CheckBox
@@ -105,22 +95,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="27dp"
-                    android:scaleX="1.3"
-                    android:scaleY="1.3"
-                    android:checked="true"
+                    android:scaleX="1.1"
+                    android:scaleY="1.1"
                     android:text="Notifications" />
 
                 <Button
-                    android:id="@+id/btn_add_image"
+                    android:id="@+id/btn_change_image"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/elements_height"
                     android:layout_marginStart="@dimen/margin_left_right"
                     android:background="@drawable/button_custom"
                     android:fontFamily="@font/roboto_regular"
                     android:gravity="center"
-                    android:text="@string/plant_image"
+                    android:text="@string/change_plant_image"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/text_size" />
+                    android:textSize="@dimen/popup_text_size" />
             </LinearLayout>
 
         </LinearLayout>
@@ -130,20 +119,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-
-            <TimePicker
-                android:id="@+id/tp_timepicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-30dp"
-                android:layout_marginTop="-30dp"
-                android:layout_marginRight="-30dp"
-                android:layout_marginBottom="-30dp"
-                android:background="@drawable/plant_list_item_background"
-                android:scaleX="0.7"
-                android:scaleY="0.7"
-                android:theme="@style/timeDatePicker"
-                android:timePickerMode="spinner" />
 
             <DatePicker
                 android:id="@+id/dp_datepicker"
@@ -158,31 +133,36 @@
                 android:datePickerMode="spinner"
                 android:scaleX="0.7"
                 android:scaleY="0.7"
-                android:theme="@style/timeDatePicker" />
+                android:theme="@style/popupTimeDatePicker" />
+
+            <TimePicker
+                android:id="@+id/tp_timepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-30dp"
+                android:layout_marginTop="-30dp"
+                android:layout_marginRight="-30dp"
+                android:layout_marginBottom="-30dp"
+                android:background="@drawable/plant_list_item_background"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:theme="@style/popupTimeDatePicker"
+                android:timePickerMode="spinner" />
+
+
 
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_add"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/elements_height"
             android:layout_marginTop="@dimen/add_plant_margin_button"
             android:background="@drawable/button_custom"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/add_plant_title"
+            android:text="@string/update_plant"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size" />
-
-        <Button
-            android:id="@+id/btn_notification"
-            android:layout_width="200dp"
-            android:layout_height="@dimen/elements_height"
-            android:layout_marginTop="@dimen/add_plant_margin_button"
-            android:background="@drawable/button_custom"
-            android:fontFamily="@font/roboto_regular"
-            android:text="NOTIFICATION"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/popup_text_size" />
 
     </LinearLayout>
 </ScrollView>

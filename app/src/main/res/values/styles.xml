@@ -9,4 +9,8 @@
     <style name="timeDatePicker">
         <item name="android:textSize">25sp</item>
     </style>
+
+    <style name="popupTimeDatePicker">
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>
