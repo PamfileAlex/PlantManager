@@ -116,4 +116,20 @@ public final class PlantDataAccess {
             e.printStackTrace();
         }
     }
+
+    public static void deletePlant(Plant plant) {
+        try {
+            Connection databaseConnection = DataAccessHelper.getConnection();
+
+            CallableStatement statement = databaseConnection.prepareCall("{call spDeletePlant(?)}");
+
+            statement.setInt(1, plant.getId());
+
+            statement.execute();
+
+            databaseConnection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -63,6 +63,11 @@ public class PlantDetailsFragment extends DialogFragment {
             updatePlant();
         });
 
+        binding.btnDelete.setOnClickListener(view -> {
+            deletePlant();
+            dismiss();
+        });
+
         return binding.getRoot();
     }
 
@@ -137,8 +142,9 @@ public class PlantDetailsFragment extends DialogFragment {
         if (!previousNextWater.isEqual(selectedPlant.getNextWater()) ||
                 previousTime.compareTo(selectedPlant.getTime()) != 0) {
             NotificationsUtils.triggerNotification(getActivity(), selectedPlant);
-            System.out.println("Notification triggered");
         }
+
+        Toast.makeText(getActivity(), "Update succeeded!", Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -154,5 +160,11 @@ public class PlantDetailsFragment extends DialogFragment {
 
         Toast.makeText(getActivity(), "Time before now!", Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+    private void deletePlant() {
+        Plant plant = plantDetailsViewModel.getSelectedPlant();
+        PlantDataAccess.deletePlant(plant);
+        applicationViewModel.deletePlant(plant);
     }
 }

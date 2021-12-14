@@ -72,8 +72,18 @@ public class ApplicationViewModel extends ViewModel {
         this.plantsRecyclerAdapter = plantsRecyclerAdapter;
     }
 
-    public void addPlant(Plant plant){
+    public void addPlant(Plant plant) {
         allPlants.add(plant);
+
+        if (plant.getIdCategory() == currentCategory.getId())
+            plants.add(plant);
+
+        notifyPlantsRecyclerAdapter();
+    }
+
+    public void deletePlant(Plant plant) {
+        allPlants.remove(plant);
+        plants.remove(plant);
         notifyPlantsRecyclerAdapter();
     }
 }
