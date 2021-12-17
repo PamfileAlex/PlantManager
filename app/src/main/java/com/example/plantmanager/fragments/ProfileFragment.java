@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.plantmanager.R;
 import com.example.plantmanager.activities.ApplicationActivity;
 import com.example.plantmanager.activities.LoginActivity;
+import com.example.plantmanager.activities.RegisterActivity;
 import com.example.plantmanager.database.UserDataAccess;
 import com.example.plantmanager.databinding.FragmentProfileBinding;
 import com.example.plantmanager.models.User;
@@ -42,13 +43,24 @@ public class ProfileFragment extends Fragment {
         binding.exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                CurrentUser.INSTANCE.setUser(null);
-                startActivity(intent);
+                logout();
             }
         });
+
+        binding.tvDeleteAccount.setOnClickListener(view -> {
+            CurrentUser.INSTANCE.getUser().setActive(false);
+            UserDataAccess.updateUser(CurrentUser.INSTANCE.getUser());
+            logout();
+        });
+
         return binding.getRoot();
+    }
+
+    private void logout() {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        CurrentUser.INSTANCE.setUser(null);
+        startActivity(intent);
     }
 
     private void populateFields(User user) {
