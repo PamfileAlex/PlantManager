@@ -23,7 +23,6 @@ public class RegisterActivity extends AppCompatActivity {
         binding.btnRegister.setOnClickListener(view -> manageRegister());
 
         setContentView(binding.getRoot());
-        //setContentView(R.layout.activity_register);
     }
 
     private void manageRegister() {

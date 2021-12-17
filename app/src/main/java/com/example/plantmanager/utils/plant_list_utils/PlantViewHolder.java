@@ -33,7 +33,7 @@ public class PlantViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
         this.onButtonPressed = onButtonPressed;
         binding.btnWater.setOnClickListener(v -> {
-            onButtonPressed.onItemClick(item, getAdapterPosition());
+            this.onButtonPressed.onItemClick(item, getAdapterPosition());
             onBind(item);
         });
     }

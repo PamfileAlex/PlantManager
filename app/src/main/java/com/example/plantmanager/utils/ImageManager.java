@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
+import com.example.plantmanager.R;
+
 public class ImageManager {
     private enum ImageOptions {
         CAMERA,
@@ -22,10 +24,10 @@ public class ImageManager {
 
     private ImageOptions imageOption;
 
-    private Fragment fragment;
-    private ImageView imageView;
+    private final Fragment fragment;
+    private final ImageView imageView;
 
-    private ActivityResultLauncher<Intent> activityResultLauncher;
+    private final ActivityResultLauncher<Intent> activityResultLauncher;
 
     public ImageManager(Fragment fragment, ImageView imageView) {
         this.imageOption = ImageOptions.NONE;
@@ -61,19 +63,29 @@ public class ImageManager {
     public void selectImage() {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
-        builder.setTitle("Add Photo!");
-        builder.setItems(options, (dialog, item) -> {
-            if (options[item].equals("Take Photo")) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                imageOption = ImageOptions.CAMERA;
-                activityResultLauncher.launch(intent);
-            } else if (options[item].equals("Choose from Gallery")) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                imageOption = ImageOptions.GALLERY;
-                activityResultLauncher.launch(intent);
-            } else if (options[item].equals("Cancel")) {
-                imageOption = ImageOptions.NONE;
-                dialog.dismiss();
+        builder.setTitle(R.string.add_photo);
+        builder.setItems(options, (dialog, position) -> {
+            Intent intent;
+            switch (position){
+                case 0:
+                    intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    imageOption = ImageOptions.CAMERA;
+                    activityResultLauncher.launch(intent);
+                    break;
+
+                case 1:
+                    intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    imageOption = ImageOptions.GALLERY;
+                    activityResultLauncher.launch(intent);
+                    break;
+
+                case 2:
+                    imageOption = ImageOptions.NONE;
+                    dialog.dismiss();
+                    break;
+
+                default:
+                    break;
             }
         });
         builder.show();

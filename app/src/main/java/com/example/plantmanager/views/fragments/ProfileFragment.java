@@ -29,21 +29,13 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
-        User user = LoggedUserManager.INSTANCE.getLoggedUser();
-        populateFields(user);
+        populateFields(LoggedUserManager.INSTANCE.getLoggedUser());
 
-        binding.btnSave.setOnClickListener(view -> manageSave(user));
+        binding.btnSave.setOnClickListener(view -> manageSave());
 
-        binding.exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LoggedUserManager.INSTANCE.logout(getActivity());
-            }
-        });
+        binding.exitButton.setOnClickListener(view -> LoggedUserManager.INSTANCE.logout(getActivity()));
 
-        binding.tvDeleteAccount.setOnClickListener(view -> {
-            showDeleteAccountDialog();
-        });
+        binding.tvDeleteAccount.setOnClickListener(view -> showDeleteAccountDialog());
 
         return binding.getRoot();
     }
@@ -55,7 +47,7 @@ public class ProfileFragment extends Fragment {
         binding.etProfileUsername.setText(user.getUsername());
     }
 
-    private void manageSave(User user) {
+    private void manageSave() {
         String lastName = binding.etProfileLastName.getText().toString();
         String firstName = binding.etProfileFirstName.getText().toString();
         String email = binding.etProfileEmail.getText().toString();
@@ -65,8 +57,12 @@ public class ProfileFragment extends Fragment {
             return;
         }
 
-        User newUser = new User(lastName, firstName, email, user.getUsername(), user.getPassword(), user.isActive());
-        UserDataAccess.updateUser(newUser);
+        User loggedUser = LoggedUserManager.INSTANCE.getLoggedUser();
+        loggedUser.setFirstName(firstName);
+        loggedUser.setLastName(lastName);
+        loggedUser.setEmail(email);
+
+        UserDataAccess.updateUser(loggedUser);
         Toast.makeText(getContext(), R.string.profile_save, Toast.LENGTH_SHORT).show();
     }
 
@@ -74,8 +70,8 @@ public class ProfileFragment extends Fragment {
         final CharSequence[] options = {"Delete", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.delete_account_dialog_message);
-        builder.setItems(options, (dialog, item) -> {
-            if (options[item].equals("Delete")) {
+        builder.setItems(options, (dialog, position) -> {
+            if (position == 0) {
                 LoggedUserManager.INSTANCE.getLoggedUser().setActive(false);
                 UserDataAccess.updateUser(LoggedUserManager.INSTANCE.getLoggedUser());
                 LoggedUserManager.INSTANCE.logout(getActivity());

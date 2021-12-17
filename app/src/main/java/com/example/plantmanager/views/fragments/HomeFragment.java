@@ -77,10 +77,6 @@ public class HomeFragment extends Fragment {
         }
     };
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -107,9 +103,6 @@ public class HomeFragment extends Fragment {
 
         SpinnerHelper.populateSpinnerWithCategories(categoryDropdown, getContext(), applicationViewModel.getCategories());
 
-//        binding.btnAddPlant.setOnClickListener(view -> NavHostFragment.findNavController(HomeFragment.this)
-//                .navigate(R.id.navigate_from_homeFragment_to_addPlantFragment));
-
         return binding.getRoot();
     }
 
@@ -118,6 +111,5 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         applicationViewModel = new ViewModelProvider(getActivity()).get(ApplicationViewModel.class);
         plantDetailsViewModel = new ViewModelProvider(getActivity()).get(PlantDetailsViewModel.class);
-        // TODO: Use the ViewModel
     }
 }

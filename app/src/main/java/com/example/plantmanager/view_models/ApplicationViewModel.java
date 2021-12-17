@@ -25,7 +25,6 @@ public class ApplicationViewModel extends ViewModel {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ApplicationViewModel() {
         this.allPlants = PlantDataAccess.getPlants(LoggedUserManager.INSTANCE.getLoggedUser().getId());
-        //plants = allPlants;
         plants = new ArrayList<>();
         categories = CategoryDataAccess.getCategories();
     }

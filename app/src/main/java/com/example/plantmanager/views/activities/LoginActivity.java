@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(view -> manageLogin());
 
         setContentView(binding.getRoot());
-        //setContentView(R.layout.activity_login);
     }
 
     private void manageLogin() {

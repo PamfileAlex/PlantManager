@@ -55,13 +55,9 @@ public class PlantDetailsFragment extends DialogFragment {
 
         populateFields();
 
-        binding.btnChangeImage.setOnClickListener(view -> {
-            imageManager.selectImage();
-        });
+        binding.btnChangeImage.setOnClickListener(view -> imageManager.selectImage());
 
-        binding.btnUpdate.setOnClickListener(view -> {
-            updatePlant();
-        });
+        binding.btnUpdate.setOnClickListener(view -> updatePlant());
 
         binding.btnDelete.setOnClickListener(view -> {
             deletePlant();
@@ -135,6 +131,7 @@ public class PlantDetailsFragment extends DialogFragment {
         selectedPlant.setNextWater(LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth()));
         selectedPlant.setTime(LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute()));
         selectedPlant.setAllowNotifications(binding.checkboxNotifications.isChecked());
+        selectedPlant.setIdCategory(((Category) binding.categoryDropdown.getSelectedItem()).getId());
 
         PlantDataAccess.updatePlant(selectedPlant);
         applicationViewModel.notifyPlantsRecyclerAdapter();

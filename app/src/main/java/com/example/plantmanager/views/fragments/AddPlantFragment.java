@@ -54,9 +54,7 @@ public class AddPlantFragment extends Fragment {
         Spinner categoryDropdown = binding.categoryDropdown;
         SpinnerHelper.populateSpinnerWithCategories(categoryDropdown, getContext(), applicationViewModel.getCategories());
 
-        binding.btnAddImage.setOnClickListener(view -> {
-            imageManager.selectImage();
-        });
+        binding.btnAddImage.setOnClickListener(view -> imageManager.selectImage());
 
         binding.btnAdd.setOnClickListener(view -> {
             if (!areFieldsValid())

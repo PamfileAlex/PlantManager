@@ -7,6 +7,7 @@
 
     <!--Common-->
     <string name="incomplete_form">Please complete all fields!</string>
+    <string name="add_photo">Add Photo</string>
 
     <!--Login Page-->
     <string name="login">Login</string>

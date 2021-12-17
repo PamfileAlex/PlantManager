@@ -16,8 +16,6 @@ import com.google.android.material.navigation.NavigationBarView;
 public class ApplicationActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     private ActivityApplicationBinding binding;
     private final HomeFragment homeFragment = new HomeFragment();
-    private final AddPlantFragment addPlantFragment = new AddPlantFragment();
-    private final ProfileFragment profileFragment = new ProfileFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,6 @@ public class ApplicationActivity extends AppCompatActivity implements Navigation
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, homeFragment).commit();
 
         setContentView(binding.getRoot());
-        //setContentView(R.layout.activity_application);
     }
 
     @Override
