@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.plantmanager.R;
 import com.example.plantmanager.data_access.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentAddPlantBinding;
 import com.example.plantmanager.models.Category;
@@ -66,12 +67,17 @@ public class AddPlantFragment extends Fragment {
             NotificationsUtils.triggerNotification(getActivity(), plant);
 
             Toast.makeText(getActivity(), "Plant was added successfully!", Toast.LENGTH_SHORT).show();
+
+            resetFields();
         });
 
         binding.dpDatepicker.setMinDate(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
         binding.btnNotification.setOnClickListener(view -> {
-            Plant plant = new Plant(100, 1, "MyPlant", null, LocalDate.now(), LocalDate.now(), LocalTime.now().plusSeconds(5), binding.checkboxNotifications.isChecked());
+            String uiPlantName = binding.etAddPlantName.getText().toString();
+            String name = uiPlantName.isEmpty() ? "MyPlant" : uiPlantName;
+
+            Plant plant = new Plant(100, 1, name, null, LocalDate.now(), LocalDate.now(), LocalTime.now().plusSeconds(5), binding.checkboxNotifications.isChecked());
             NotificationsUtils.triggerNotification(getActivity(), plant);
         });
 
@@ -93,5 +99,20 @@ public class AddPlantFragment extends Fragment {
     private boolean areFieldsValid() {
         return PlantInfoCheck.plantNameCheck(getActivity(), binding.etAddPlantName) &&
                 PlantInfoCheck.plantCategoryCheck(getActivity(), binding.categoryDropdown);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void resetFields() {
+        binding.etAddPlantName.setText("");
+        binding.categoryDropdown.setSelection(0);
+        binding.image.setImageResource(R.drawable.plant);
+        binding.checkboxNotifications.setChecked(true);
+
+        LocalTime time = LocalTime.now();
+        binding.tpTimepicker.setHour(time.getHour());
+        binding.tpTimepicker.setMinute(time.getMinute());
+
+        LocalDate date = LocalDate.now();
+        binding.dpDatepicker.updateDate(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
     }
 }

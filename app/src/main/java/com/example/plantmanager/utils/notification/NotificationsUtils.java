@@ -62,6 +62,6 @@ public class NotificationsUtils {
         if (!plant.getAllowNotifications())
             return;
         LocalDateTime localDateTime = LocalDateTime.of(plant.getNextWater(), plant.getTime());
-        NotificationsUtils.scheduleNotification(activity, "PlantManager", "It's time to water your " + plant.getName() + "!", localDateTime);
+        NotificationsUtils.scheduleNotification(activity,"PlantManager", "It's time to water: " + plant.getName(), localDateTime);
     }
 }

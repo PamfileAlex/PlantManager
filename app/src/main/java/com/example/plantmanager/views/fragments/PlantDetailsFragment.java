@@ -57,7 +57,10 @@ public class PlantDetailsFragment extends DialogFragment {
 
         binding.btnChangeImage.setOnClickListener(view -> imageManager.selectImage());
 
-        binding.btnUpdate.setOnClickListener(view -> updatePlant());
+        binding.btnUpdate.setOnClickListener(view -> {
+            updatePlant();
+            dismiss();
+        });
 
         binding.btnDelete.setOnClickListener(view -> {
             deletePlant();
