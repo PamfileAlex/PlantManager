@@ -1,25 +1,21 @@
 package com.example.plantmanager.fragments;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.plantmanager.R;
-import com.example.plantmanager.activities.ApplicationActivity;
 import com.example.plantmanager.activities.LoginActivity;
-import com.example.plantmanager.activities.RegisterActivity;
 import com.example.plantmanager.database.UserDataAccess;
 import com.example.plantmanager.databinding.FragmentProfileBinding;
 import com.example.plantmanager.models.User;
 import com.example.plantmanager.utils.CurrentUser;
-import com.example.plantmanager.view_models.ApplicationViewModel;
 
 public class ProfileFragment extends Fragment {
 
@@ -48,9 +44,7 @@ public class ProfileFragment extends Fragment {
         });
 
         binding.tvDeleteAccount.setOnClickListener(view -> {
-            CurrentUser.INSTANCE.getUser().setActive(false);
-            UserDataAccess.updateUser(CurrentUser.INSTANCE.getUser());
-            logout();
+            showDeleteAccountDialog();
         });
 
         return binding.getRoot();
@@ -83,5 +77,19 @@ public class ProfileFragment extends Fragment {
         User newUser = new User(lastName, firstName, email, user.getUsername(), user.getPassword(), user.isActive());
         UserDataAccess.updateUser(newUser);
         Toast.makeText(getContext(), R.string.profile_save, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showDeleteAccountDialog() {
+        final CharSequence[] options = {"Delete", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.delete_account_dialog_message);
+        builder.setItems(options, (dialog, item) -> {
+            if (options[item].equals("Delete")) {
+                CurrentUser.INSTANCE.getUser().setActive(false);
+                UserDataAccess.updateUser(CurrentUser.INSTANCE.getUser());
+                logout();
+            }
+        });
+        builder.show();
     }
 }

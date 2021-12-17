@@ -44,6 +44,7 @@
     <string name="save">save</string>
     <string name="exit">exit</string>
     <string name="delete_account">Delete your account</string>
+    <string name="delete_account_dialog_message">Are you sure you want to delete your account?</string>
 
     <!--Plant details Page-->
     <string name="change_plant_image">Change image</string>
