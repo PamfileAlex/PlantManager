@@ -20,7 +20,7 @@ import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.LoggedUserManager;
 import com.example.plantmanager.utils.ImageManager;
-import com.example.plantmanager.utils.NotificationsUtils;
+import com.example.plantmanager.utils.notification.NotificationsUtils;
 import com.example.plantmanager.utils.PlantInfoCheck;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;

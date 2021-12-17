@@ -16,24 +16,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.plantmanager.database.PlantDataAccess;
 
 import com.example.plantmanager.databinding.FragmentHomeBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
-import com.example.plantmanager.utils.NotificationsUtils;
-import com.example.plantmanager.utils.OnItemListener;
-import com.example.plantmanager.utils.PlantsRecyclerAdapter;
+import com.example.plantmanager.utils.notification.NotificationsUtils;
+import com.example.plantmanager.utils.plant_list_utils.OnItemListener;
+import com.example.plantmanager.utils.plant_list_utils.PlantsRecyclerAdapter;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
 import com.example.plantmanager.view_models.PlantDetailsViewModel;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 
 public class HomeFragment extends Fragment {

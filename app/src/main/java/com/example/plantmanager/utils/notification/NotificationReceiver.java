@@ -1,9 +1,6 @@
-package com.example.plantmanager.utils;
-
-import static com.example.plantmanager.utils.NotificationsUtils.NOTIFICATION_CHANNEL_ID;
+package com.example.plantmanager.utils.notification;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
