@@ -47,6 +47,11 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        if (!user.isActive()) {
+            Toast.makeText(LoginActivity.this, R.string.inactive_user, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         CurrentUser.INSTANCE.setUser(user);
 
         startActivity(new Intent(getApplicationContext(), ApplicationActivity.class));

@@ -9,17 +9,18 @@ public class User {
     private String password;
     private boolean active;
 
-    public User(int id, String lastName, String firstName, String email, String username, String password) {
-        this(lastName, firstName, email, username, password);
+    public User(int id, String lastName, String firstName, String email, String username, String password, boolean active) {
+        this(lastName, firstName, email, username, password, active);
         this.id = id;
     }
 
-    public User(String lastName, String firstName, String email, String username, String password) {
+    public User(String lastName, String firstName, String email, String username, String password, boolean active) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.active = active;
     }
 
     public int getId() {

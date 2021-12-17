@@ -14,6 +14,7 @@
     <string name="password">Password</string>
     <string name="click_to_register"><u>Click here to register</u></string>
     <string name="wrong_credentials">Invalid username or password!</string>
+    <string name="inactive_user">User is inactive!</string>
 
     <!--Register Page-->
     <string name="register">Register</string>

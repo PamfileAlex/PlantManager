@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        User user = new User(lastName, firstName, email, username, password);
+        User user = new User(lastName, firstName, email, username, password, true);
         UserDataAccess.insertUser(user);
 
         Toast.makeText(RegisterActivity.this, R.string.register_succeeded, Toast.LENGTH_SHORT).show();

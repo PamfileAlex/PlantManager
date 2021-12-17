@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment {
             return;
         }
 
-        User newUser = new User(lastName, firstName, email, user.getUsername(), user.getPassword());
+        User newUser = new User(lastName, firstName, email, user.getUsername(), user.getPassword(), user.isActive());
         UserDataAccess.updateUser(newUser);
         Toast.makeText(getContext(), R.string.profile_save, Toast.LENGTH_SHORT).show();
     }
