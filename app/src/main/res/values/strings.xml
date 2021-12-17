@@ -37,6 +37,7 @@
     <string name="plant_title">Plant title</string>
     <string name="last_watered">Last watered: </string>
     <string name="next_water">Next water: </string>
+    <string name="hour">Hour: </string>
     <string name="water">WATER</string>
 
     <!--My Profile Page-->
@@ -51,4 +52,9 @@
     <string name="change_plant_image">Change image</string>
     <string name="update_plant">Update</string>
     <string name="delete_plant">Remove</string>
+
+    <!--Menu-->
+    <string name="home">Home</string>
+    <string name="add_plant">Add plant</string>
+    <string name="profile">Profile</string>
 </resources>
