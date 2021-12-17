@@ -6,7 +6,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background"
-    tools:context=".fragments.AddPlantFragment">
+    tools:context=".views.fragments.AddPlantFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -135,10 +135,10 @@
                 android:id="@+id/tp_timepicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="-30dp"
-                android:layout_marginTop="-30dp"
-                android:layout_marginRight="-30dp"
-                android:layout_marginBottom="-30dp"
+                android:layout_marginLeft="@dimen/picker_margin"
+                android:layout_marginTop="@dimen/picker_margin"
+                android:layout_marginRight="@dimen/picker_margin"
+                android:layout_marginBottom="@dimen/picker_margin"
                 android:background="@drawable/plant_list_item_background"
                 android:scaleX="0.7"
                 android:scaleY="0.7"
@@ -149,10 +149,10 @@
                 android:id="@+id/dp_datepicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="-30dp"
-                android:layout_marginTop="-30dp"
-                android:layout_marginRight="-30dp"
-                android:layout_marginBottom="-30dp"
+                android:layout_marginLeft="@dimen/picker_margin"
+                android:layout_marginTop="@dimen/picker_margin"
+                android:layout_marginRight="@dimen/picker_margin"
+                android:layout_marginBottom="@dimen/picker_margin"
                 android:background="@drawable/plant_list_item_background"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
@@ -164,7 +164,7 @@
 
         <Button
             android:id="@+id/btn_add"
-            android:layout_width="200dp"
+            android:layout_width="@dimen/add_plant_button_width"
             android:layout_height="@dimen/elements_height"
             android:layout_marginTop="@dimen/add_plant_margin_button"
             android:background="@drawable/button_custom"
@@ -175,7 +175,7 @@
 
         <Button
             android:id="@+id/btn_notification"
-            android:layout_width="200dp"
+            android:layout_width="@dimen/add_plant_button_width"
             android:layout_height="@dimen/elements_height"
             android:layout_marginTop="@dimen/add_plant_margin_button"
             android:background="@drawable/button_custom"

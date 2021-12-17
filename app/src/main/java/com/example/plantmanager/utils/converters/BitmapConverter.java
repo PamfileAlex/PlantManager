@@ -1,11 +1,11 @@
-package com.example.plantmanager.utils;
+package com.example.plantmanager.utils.converters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayOutputStream;
 
-public final class BitmapUtils {
+public final class BitmapConverter {
     public static Bitmap fromBytes(byte[] bytes) {
         if (bytes == null) {
             return null;

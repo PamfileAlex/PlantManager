@@ -1,4 +1,4 @@
-package com.example.plantmanager.fragments;
+package com.example.plantmanager.views.fragments;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.plantmanager.database.PlantDataAccess;
+import com.example.plantmanager.data_access.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentPlantDetailsBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.ImageManager;
-import com.example.plantmanager.utils.NotificationsUtils;
+import com.example.plantmanager.utils.notification.NotificationsUtils;
 import com.example.plantmanager.utils.PlantInfoCheck;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
@@ -55,12 +55,11 @@ public class PlantDetailsFragment extends DialogFragment {
 
         populateFields();
 
-        binding.btnChangeImage.setOnClickListener(view -> {
-            imageManager.selectImage();
-        });
+        binding.btnChangeImage.setOnClickListener(view -> imageManager.selectImage());
 
         binding.btnUpdate.setOnClickListener(view -> {
             updatePlant();
+            dismiss();
         });
 
         binding.btnDelete.setOnClickListener(view -> {
@@ -135,6 +134,7 @@ public class PlantDetailsFragment extends DialogFragment {
         selectedPlant.setNextWater(LocalDate.of(binding.dpDatepicker.getYear(), binding.dpDatepicker.getMonth() + 1, binding.dpDatepicker.getDayOfMonth()));
         selectedPlant.setTime(LocalTime.of(binding.tpTimepicker.getHour(), binding.tpTimepicker.getMinute()));
         selectedPlant.setAllowNotifications(binding.checkboxNotifications.isChecked());
+        selectedPlant.setIdCategory(((Category) binding.categoryDropdown.getSelectedItem()).getId());
 
         PlantDataAccess.updatePlant(selectedPlant);
         applicationViewModel.notifyPlantsRecyclerAdapter();

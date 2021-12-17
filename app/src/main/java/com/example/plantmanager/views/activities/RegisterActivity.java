@@ -1,4 +1,4 @@
-package com.example.plantmanager.activities;
+package com.example.plantmanager.views.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.plantmanager.R;
-import com.example.plantmanager.database.UserDataAccess;
+import com.example.plantmanager.data_access.UserDataAccess;
 import com.example.plantmanager.databinding.ActivityRegisterBinding;
 import com.example.plantmanager.models.User;
 
@@ -23,7 +23,6 @@ public class RegisterActivity extends AppCompatActivity {
         binding.btnRegister.setOnClickListener(view -> manageRegister());
 
         setContentView(binding.getRoot());
-        //setContentView(R.layout.activity_register);
     }
 
     private void manageRegister() {

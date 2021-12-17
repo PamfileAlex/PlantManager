@@ -1,4 +1,4 @@
-package com.example.plantmanager.utils;
+package com.example.plantmanager.utils.notification;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -8,7 +8,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -18,7 +17,6 @@ import com.example.plantmanager.R;
 import com.example.plantmanager.models.Plant;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneId;
 
 public class NotificationsUtils {
@@ -64,6 +62,6 @@ public class NotificationsUtils {
         if (!plant.getAllowNotifications())
             return;
         LocalDateTime localDateTime = LocalDateTime.of(plant.getNextWater(), plant.getTime());
-        NotificationsUtils.scheduleNotification(activity, "PlantManager", "It's time to water your " + plant.getName() + "!", localDateTime);
+        NotificationsUtils.scheduleNotification(activity,"PlantManager", "It's time to water: " + plant.getName(), localDateTime);
     }
 }

@@ -5,12 +5,12 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModel;
 
-import com.example.plantmanager.database.CategoryDataAccess;
-import com.example.plantmanager.database.PlantDataAccess;
+import com.example.plantmanager.data_access.CategoryDataAccess;
+import com.example.plantmanager.data_access.PlantDataAccess;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
-import com.example.plantmanager.utils.CurrentUser;
-import com.example.plantmanager.utils.PlantsRecyclerAdapter;
+import com.example.plantmanager.utils.LoggedUserManager;
+import com.example.plantmanager.utils.plant_list_utils.PlantsRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -24,8 +24,7 @@ public class ApplicationViewModel extends ViewModel {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ApplicationViewModel() {
-        this.allPlants = PlantDataAccess.getPlants(CurrentUser.INSTANCE.getUser().getId());
-        //plants = allPlants;
+        this.allPlants = PlantDataAccess.getPlants(LoggedUserManager.INSTANCE.getLoggedUser().getId());
         plants = new ArrayList<>();
         categories = CategoryDataAccess.getCategories();
     }

@@ -1,4 +1,4 @@
-package com.example.plantmanager.database;
+package com.example.plantmanager.data_access;
 
 import android.os.StrictMode;
 
@@ -22,13 +22,13 @@ public final class DataAccessHelper {
         try {
             Class.forName(dbClasses);
             connection = DriverManager.getConnection(dbConnectionUrl);
-            System.out.println("SUCCESS");
+            System.out.println("Database connection succeeded");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            System.out.println("ERROR");
+            System.out.println("DbClasses not found");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("FAILURE");
+            System.out.println("Database connection failed");
         }
 
         return connection;

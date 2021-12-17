@@ -1,33 +1,27 @@
-package com.example.plantmanager.fragments;
+package com.example.plantmanager.views.fragments;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.plantmanager.database.PlantDataAccess;
+import com.example.plantmanager.R;
+import com.example.plantmanager.data_access.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentAddPlantBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
-import com.example.plantmanager.utils.CurrentUser;
+import com.example.plantmanager.utils.LoggedUserManager;
 import com.example.plantmanager.utils.ImageManager;
-import com.example.plantmanager.utils.NotificationsUtils;
+import com.example.plantmanager.utils.notification.NotificationsUtils;
 import com.example.plantmanager.utils.PlantInfoCheck;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
@@ -36,7 +30,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.Date;
 
 public class AddPlantFragment extends Fragment {
 
@@ -62,26 +55,29 @@ public class AddPlantFragment extends Fragment {
         Spinner categoryDropdown = binding.categoryDropdown;
         SpinnerHelper.populateSpinnerWithCategories(categoryDropdown, getContext(), applicationViewModel.getCategories());
 
-        binding.btnAddImage.setOnClickListener(view -> {
-            imageManager.selectImage();
-        });
+        binding.btnAddImage.setOnClickListener(view -> imageManager.selectImage());
 
         binding.btnAdd.setOnClickListener(view -> {
             if (!areFieldsValid())
                 return;
             Plant plant = getPlant();
-            PlantDataAccess.insertPlant(plant, CurrentUser.INSTANCE.getUser().getId());
+            PlantDataAccess.insertPlant(plant, LoggedUserManager.INSTANCE.getLoggedUser().getId());
             applicationViewModel.addPlant(plant);
 
             NotificationsUtils.triggerNotification(getActivity(), plant);
 
             Toast.makeText(getActivity(), "Plant was added successfully!", Toast.LENGTH_SHORT).show();
+
+            resetFields();
         });
 
         binding.dpDatepicker.setMinDate(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
         binding.btnNotification.setOnClickListener(view -> {
-            Plant plant = new Plant(100, 1, "MyPlant", null, LocalDate.now(), LocalDate.now(), LocalTime.now().plusSeconds(5), binding.checkboxNotifications.isChecked());
+            String uiPlantName = binding.etAddPlantName.getText().toString();
+            String name = uiPlantName.isEmpty() ? "MyPlant" : uiPlantName;
+
+            Plant plant = new Plant(100, 1, name, null, LocalDate.now(), LocalDate.now(), LocalTime.now().plusSeconds(5), binding.checkboxNotifications.isChecked());
             NotificationsUtils.triggerNotification(getActivity(), plant);
         });
 
@@ -103,5 +99,20 @@ public class AddPlantFragment extends Fragment {
     private boolean areFieldsValid() {
         return PlantInfoCheck.plantNameCheck(getActivity(), binding.etAddPlantName) &&
                 PlantInfoCheck.plantCategoryCheck(getActivity(), binding.categoryDropdown);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void resetFields() {
+        binding.etAddPlantName.setText("");
+        binding.categoryDropdown.setSelection(0);
+        binding.image.setImageResource(R.drawable.plant);
+        binding.checkboxNotifications.setChecked(true);
+
+        LocalTime time = LocalTime.now();
+        binding.tpTimepicker.setHour(time.getHour());
+        binding.tpTimepicker.setMinute(time.getMinute());
+
+        LocalDate date = LocalDate.now();
+        binding.dpDatepicker.updateDate(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
     }
 }

@@ -1,19 +1,16 @@
-package com.example.plantmanager.activities;
+package com.example.plantmanager.views.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.plantmanager.R;
-import com.example.plantmanager.database.UserDataAccess;
+import com.example.plantmanager.data_access.UserDataAccess;
 import com.example.plantmanager.databinding.ActivityLoginBinding;
 import com.example.plantmanager.models.User;
-import com.example.plantmanager.utils.CurrentUser;
+import com.example.plantmanager.utils.LoggedUserManager;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
@@ -29,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(view -> manageLogin());
 
         setContentView(binding.getRoot());
-        //setContentView(R.layout.activity_login);
     }
 
     private void manageLogin() {
@@ -52,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        CurrentUser.INSTANCE.setUser(user);
+        LoggedUserManager.INSTANCE.login(user);
 
         startActivity(new Intent(getApplicationContext(), ApplicationActivity.class));
     }

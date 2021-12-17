@@ -1,4 +1,4 @@
-package com.example.plantmanager.activities;
+package com.example.plantmanager.views.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,16 +8,14 @@ import android.view.MenuItem;
 
 import com.example.plantmanager.R;
 import com.example.plantmanager.databinding.ActivityApplicationBinding;
-import com.example.plantmanager.fragments.AddPlantFragment;
-import com.example.plantmanager.fragments.HomeFragment;
-import com.example.plantmanager.fragments.ProfileFragment;
+import com.example.plantmanager.views.fragments.AddPlantFragment;
+import com.example.plantmanager.views.fragments.HomeFragment;
+import com.example.plantmanager.views.fragments.ProfileFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class ApplicationActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     private ActivityApplicationBinding binding;
     private final HomeFragment homeFragment = new HomeFragment();
-    private final AddPlantFragment addPlantFragment = new AddPlantFragment();
-    private final ProfileFragment profileFragment = new ProfileFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,6 @@ public class ApplicationActivity extends AppCompatActivity implements Navigation
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_view, homeFragment).commit();
 
         setContentView(binding.getRoot());
-        //setContentView(R.layout.activity_application);
     }
 
     @Override

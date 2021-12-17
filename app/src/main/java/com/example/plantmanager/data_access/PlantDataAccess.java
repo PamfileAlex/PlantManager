@@ -1,22 +1,19 @@
-package com.example.plantmanager.database;
+package com.example.plantmanager.data_access;
 
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.plantmanager.models.Plant;
-import com.example.plantmanager.models.User;
-import com.example.plantmanager.utils.BitmapUtils;
-import com.example.plantmanager.utils.LocalDateConverter;
+import com.example.plantmanager.utils.converters.BitmapConverter;
+import com.example.plantmanager.utils.converters.LocalDateConverter;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.sql.*;
 
 public final class PlantDataAccess {
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -37,7 +34,7 @@ public final class PlantDataAccess {
                 Plant plant = new Plant(resultSet.getInt("id_plant"),
                         resultSet.getInt("id_category"),
                         resultSet.getString("name"),
-                        BitmapUtils.fromBytes(resultSet.getBytes("image")),
+                        BitmapConverter.fromBytes(resultSet.getBytes("image")),
                         LocalDateConverter.fromSqlDate(resultSet.getDate("last_watered")),
                         LocalDateConverter.fromSqlDate(resultSet.getDate("next_water")),
                         resultSet.getTime("time").toInstant().atZone(ZoneId.systemDefault()).toLocalTime(),
@@ -61,7 +58,7 @@ public final class PlantDataAccess {
             statement.setInt(1, idUser);
             statement.setInt(2, plant.getIdCategory());
             statement.setString(3, plant.getName());
-            statement.setBytes(4, BitmapUtils.fromBitmap(plant.getImage()));
+            statement.setBytes(4, BitmapConverter.fromBitmap(plant.getImage()));
             statement.setDate(5, LocalDateConverter.toSqlDate(plant.getLastWatered()));
             statement.setDate(6, LocalDateConverter.toSqlDate(plant.getNextWater()));
             statement.setTime(7, new java.sql.Time(plant.getTime().getHour(), plant.getTime().getMinute(), 0));
@@ -103,7 +100,7 @@ public final class PlantDataAccess {
             statement.setInt(1, plant.getId());
             statement.setInt(2, plant.getIdCategory());
             statement.setString(3, plant.getName());
-            statement.setBytes(4, BitmapUtils.fromBitmap(plant.getImage()));
+            statement.setBytes(4, BitmapConverter.fromBitmap(plant.getImage()));
             statement.setDate(5, LocalDateConverter.toSqlDate(plant.getLastWatered()));
             statement.setDate(6, LocalDateConverter.toSqlDate(plant.getNextWater()));
             statement.setTime(7, new java.sql.Time(plant.getTime().getHour(), plant.getTime().getMinute(), 0));

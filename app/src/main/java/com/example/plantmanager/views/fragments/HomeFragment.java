@@ -1,4 +1,4 @@
-package com.example.plantmanager.fragments;
+package com.example.plantmanager.views.fragments;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
@@ -16,24 +16,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.plantmanager.database.PlantDataAccess;
+import com.example.plantmanager.data_access.PlantDataAccess;
 
 import com.example.plantmanager.databinding.FragmentHomeBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
-import com.example.plantmanager.utils.NotificationsUtils;
-import com.example.plantmanager.utils.OnItemListener;
-import com.example.plantmanager.utils.PlantsRecyclerAdapter;
+import com.example.plantmanager.utils.notification.NotificationsUtils;
+import com.example.plantmanager.utils.plant_list_utils.OnItemListener;
+import com.example.plantmanager.utils.plant_list_utils.PlantsRecyclerAdapter;
 import com.example.plantmanager.utils.SpinnerHelper;
 import com.example.plantmanager.view_models.ApplicationViewModel;
 import com.example.plantmanager.view_models.PlantDetailsViewModel;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 
 public class HomeFragment extends Fragment {
@@ -81,10 +77,6 @@ public class HomeFragment extends Fragment {
         }
     };
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -111,9 +103,6 @@ public class HomeFragment extends Fragment {
 
         SpinnerHelper.populateSpinnerWithCategories(categoryDropdown, getContext(), applicationViewModel.getCategories());
 
-//        binding.btnAddPlant.setOnClickListener(view -> NavHostFragment.findNavController(HomeFragment.this)
-//                .navigate(R.id.navigate_from_homeFragment_to_addPlantFragment));
-
         return binding.getRoot();
     }
 
@@ -122,6 +111,5 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         applicationViewModel = new ViewModelProvider(getActivity()).get(ApplicationViewModel.class);
         plantDetailsViewModel = new ViewModelProvider(getActivity()).get(PlantDetailsViewModel.class);
-        // TODO: Use the ViewModel
     }
 }
