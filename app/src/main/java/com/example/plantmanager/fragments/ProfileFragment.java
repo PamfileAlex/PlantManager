@@ -15,7 +15,7 @@ import com.example.plantmanager.activities.LoginActivity;
 import com.example.plantmanager.database.UserDataAccess;
 import com.example.plantmanager.databinding.FragmentProfileBinding;
 import com.example.plantmanager.models.User;
-import com.example.plantmanager.utils.CurrentUser;
+import com.example.plantmanager.utils.LoggedUserManager;
 
 public class ProfileFragment extends Fragment {
 
@@ -31,7 +31,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
-        User user = CurrentUser.INSTANCE.getUser();
+        User user = LoggedUserManager.INSTANCE.getLoggedUser();
         populateFields(user);
 
         binding.btnSave.setOnClickListener(view -> manageSave(user));
@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
         binding.exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logout();
+                LoggedUserManager.INSTANCE.logout(getActivity());
             }
         });
 
@@ -48,13 +48,6 @@ public class ProfileFragment extends Fragment {
         });
 
         return binding.getRoot();
-    }
-
-    private void logout() {
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        CurrentUser.INSTANCE.setUser(null);
-        startActivity(intent);
     }
 
     private void populateFields(User user) {
@@ -85,9 +78,9 @@ public class ProfileFragment extends Fragment {
         builder.setTitle(R.string.delete_account_dialog_message);
         builder.setItems(options, (dialog, item) -> {
             if (options[item].equals("Delete")) {
-                CurrentUser.INSTANCE.getUser().setActive(false);
-                UserDataAccess.updateUser(CurrentUser.INSTANCE.getUser());
-                logout();
+                LoggedUserManager.INSTANCE.getLoggedUser().setActive(false);
+                UserDataAccess.updateUser(LoggedUserManager.INSTANCE.getLoggedUser());
+                LoggedUserManager.INSTANCE.logout(getActivity());
             }
         });
         builder.show();
