@@ -5,8 +5,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModel;
 
-import com.example.plantmanager.database.CategoryDataAccess;
-import com.example.plantmanager.database.PlantDataAccess;
+import com.example.plantmanager.data_access.CategoryDataAccess;
+import com.example.plantmanager.data_access.PlantDataAccess;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;
 import com.example.plantmanager.utils.LoggedUserManager;

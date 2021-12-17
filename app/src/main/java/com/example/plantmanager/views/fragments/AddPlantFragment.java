@@ -1,4 +1,4 @@
-package com.example.plantmanager.fragments;
+package com.example.plantmanager.views.fragments;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.plantmanager.database.PlantDataAccess;
+import com.example.plantmanager.data_access.PlantDataAccess;
 import com.example.plantmanager.databinding.FragmentAddPlantBinding;
 import com.example.plantmanager.models.Category;
 import com.example.plantmanager.models.Plant;

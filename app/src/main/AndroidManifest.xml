@@ -15,13 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlantManager">
         <activity
-            android:name=".activities.ApplicationActivity"
+            android:name=".views.activities.ApplicationActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name=".views.activities.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".views.activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

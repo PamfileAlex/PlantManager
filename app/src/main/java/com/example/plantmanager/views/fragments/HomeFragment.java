@@ -1,4 +1,4 @@
-package com.example.plantmanager.fragments;
+package com.example.plantmanager.views.fragments;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.plantmanager.database.PlantDataAccess;
+import com.example.plantmanager.data_access.PlantDataAccess;
 
 import com.example.plantmanager.databinding.FragmentHomeBinding;
 import com.example.plantmanager.models.Category;

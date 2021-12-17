@@ -1,7 +1,6 @@
-package com.example.plantmanager.fragments;
+package com.example.plantmanager.views.fragments;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +10,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.plantmanager.R;
-import com.example.plantmanager.activities.LoginActivity;
-import com.example.plantmanager.database.UserDataAccess;
+import com.example.plantmanager.data_access.UserDataAccess;
 import com.example.plantmanager.databinding.FragmentProfileBinding;
 import com.example.plantmanager.models.User;
 import com.example.plantmanager.utils.LoggedUserManager;

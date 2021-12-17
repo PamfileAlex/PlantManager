@@ -2,11 +2,8 @@ package com.example.plantmanager.utils;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.Toast;
 
-import com.example.plantmanager.R;
-import com.example.plantmanager.activities.LoginActivity;
-import com.example.plantmanager.database.UserDataAccess;
+import com.example.plantmanager.views.activities.LoginActivity;
 import com.example.plantmanager.models.User;
 
 public enum LoggedUserManager {

@@ -1,4 +1,4 @@
-package com.example.plantmanager.database;
+package com.example.plantmanager.data_access;
 
 import android.os.Build;
 
