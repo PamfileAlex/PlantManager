@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 
 import androidx.fragment.app.Fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
@@ -65,23 +66,17 @@ public class ImageManager {
         AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getActivity());
         builder.setTitle(R.string.add_photo);
         builder.setItems(options, (dialog, position) -> {
-            Intent intent;
-            switch (position){
+            switch (position) {
                 case 0:
-                    intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    imageOption = ImageOptions.CAMERA;
-                    activityResultLauncher.launch(intent);
+                    takePhoto();
                     break;
 
                 case 1:
-                    intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    imageOption = ImageOptions.GALLERY;
-                    activityResultLauncher.launch(intent);
+                    chooseFromGallery();
                     break;
 
                 case 2:
-                    imageOption = ImageOptions.NONE;
-                    dialog.dismiss();
+                    cancel(dialog);
                     break;
 
                 default:
@@ -89,5 +84,22 @@ public class ImageManager {
             }
         });
         builder.show();
+    }
+
+    private void takePhoto() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        imageOption = ImageOptions.CAMERA;
+        activityResultLauncher.launch(intent);
+    }
+
+    private void chooseFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        imageOption = ImageOptions.GALLERY;
+        activityResultLauncher.launch(intent);
+    }
+
+    private void cancel(DialogInterface dialog) {
+        imageOption = ImageOptions.NONE;
+        dialog.dismiss();
     }
 }
