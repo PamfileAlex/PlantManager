@@ -1,9 +1,11 @@
 package com.example.plantmanager.utils.plant_list_utils;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plantmanager.databinding.PlantListItemBinding;
@@ -22,6 +24,7 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantViewHolder>
         this.onButtonPressed = onButtonPressed;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @NonNull
     @Override
     public PlantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,6 +32,7 @@ public class PlantsRecyclerAdapter extends RecyclerView.Adapter<PlantViewHolder>
         return new PlantViewHolder(binding, onItemListener, onButtonPressed);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull PlantViewHolder holder, int position) {
         holder.onBind(plants.get(position));

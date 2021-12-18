@@ -135,16 +135,29 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_water"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/plant_list_button_layout_height"
-            android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/margin_left_right"
-            android:background="@drawable/button_custom"
-            android:fontFamily="@font/roboto_regular"
-            android:text="@string/water"
-            android:textAllCaps="false"
-            android:textSize="@dimen/text_size" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/color_layout"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="@dimen/margin_top_bottom" />
+
+            <Button
+                android:id="@+id/btn_water"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/plant_list_button_layout_height"
+                android:layout_marginStart="100dp"
+                android:layout_marginEnd="@dimen/margin_left_right"
+                android:background="@drawable/button_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="end"
+                android:text="@string/water"
+                android:textAllCaps="false"
+                android:textSize="@dimen/text_size" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
